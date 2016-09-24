@@ -1,5 +1,5 @@
-[![Stories in Ready](https://badge.waffle.io/gimdongwoo/NIPA-Titanium-BoilerPlate-BaaS.png?label=ready&title=Ready)](https://waffle.io/gimdongwoo/NIPA-Titanium-BoilerPlate-BaaS)
-[![Stories in In Progress](https://badge.waffle.io/gimdongwoo/NIPA-Titanium-BoilerPlate-BaaS.png?label=in%20progress&title=In%20Progress)](https://waffle.io/gimdongwoo/NIPA-Titanium-BoilerPlate-BaaS)
+[![Stories in Ready](https://badge.waffle.io/kosslab-kr/Titanium-BrandNew.png?label=ready&title=Ready)](https://waffle.io/kosslab-kr/Titanium-BrandNew)
+[![Stories in In Progress](https://badge.waffle.io/kosslab-kr/Titanium-BrandNew.png?label=in%20progress&title=In%20Progress)](https://waffle.io/kosslab-kr/Titanium-BrandNew)
 
 # NIPA-Titanium-BoilerPlate-BaaS
 Titanium mobile application develop framework Boiler Plate Project using BaaS - Support by NIPA (http://www.nipa.kr/)
