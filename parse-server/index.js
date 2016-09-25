@@ -34,15 +34,15 @@ var api = new ParseServer({
   //     { pfx: __dirname + "/push/aps_production.p12", bundleId: process.env.APP_BUNDLE_ID, production: true }
   //   ]
   // },
-  filesAdapter: new S3Adapter(
-    process.env.S3_ACCESS_KEY,
-    process.env.S3_SECRET_KEY,
-    process.env.S3_BUCKET,
-    {
-      region: process.env.S3_REGION,
-      directAccess: process.env.S3_DIRECT_ACCESS
-    }
-  )
+  // filesAdapter: new S3Adapter(
+  //   process.env.S3_ACCESS_KEY,
+  //   process.env.S3_SECRET_KEY,
+  //   process.env.S3_BUCKET,
+  //   {
+  //     region: process.env.S3_REGION,
+  //     directAccess: process.env.S3_DIRECT_ACCESS
+  //   }
+  // )
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
@@ -50,6 +50,7 @@ var api = new ParseServer({
 
 // parse dashboard
 var dashboard = new ParseDashboard({
+  allowInsecureHTTP: true,
   apps: [
     {
       appId: process.env.APP_ID || 'myAppId',
@@ -64,7 +65,7 @@ var dashboard = new ParseDashboard({
       pass: process.env.ADM_PASS || ''
     }
   ]
-});
+}, true);
 
 var app = express();
 
