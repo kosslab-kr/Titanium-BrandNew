@@ -1,4 +1,4 @@
-# Titanium Boiler Plate Template
+# Brand New Project
 
 ## Member & Role (Github ID)
 
@@ -12,14 +12,7 @@
 	- 유승연 (dbtmddus) : Backend Server Logic
 	- 조소영 (s2s22) : Backend Server Logic
 	- 오충엽 (ChungHyup) : Backend Server Logic
-- Project [Save My Friends]
-	- 김덕윤 (kimdeokyun) : Team Manager, SMS Parser/Sender, Filter
-	- 진재언 (jinjaeeon) : SMS Parser/Sender, Filter
-	- 최형필 (Hyeongpil) : Contacts Load, Deduplication
-	- 김정래 (suprodigy) : Contacts Load, Deduplication
-	- 함유경 (ykhaam) : Frontend UI
-	- 김치현 (ChiHyeonKim) : Testing, Debugging, Bug fix
-	- 양준영 (yjy0431) : Testing, Debugging, Bug fix
+
 
 ## Goal
 
@@ -29,26 +22,13 @@
 
 ## Project
 
-- 인원을 절반으로 나누어 2개의 프로젝트를 경쟁적으로 진행합니다.
-
-### Project [Brand New]
-	- 오픈마켓에 입점하지 않는 중소 온라인 패션 쇼핑몰 들이 많이 있습니다.
-	- 개성있는 제품을 소량 생산하기 때문에, 구매 기회를 놓치는 경우가 많습니다.
-	- 또한 오픈 마켓이라고 하더라도 자신의 취향에 맞는 제품의 새로운 정보를 제공 받기는 불가능합니다.
-	- 이러한 니즈를 반영하여, 신제품 정보를 제공하는 어플리케이션을 개발합니다.
-	- 자신의 취향/기호/선호 쇼핑몰을 선택하여, 신상품이 올라오면 push 메시지로 알려줍니다.
-	- 비정형화 된 쇼핑몰을 각각 Parsing해야 하는 기술적 어려움이 예상됩니다.
-	- 취향에 맞는 제품을 Define해야하는 기술적 어려움이 예상됩니다.
-
-### Project [Save My Friends]
-	- 국가에서 발송하는 재난문자는 기술적/물리적 한계로 인해 동시에 모든 국민에게 전달되지 않습니다.
-	- 나와 내 친구들 중에 재난문자를 가장 먼저 받는 사람이 있다면, 그것을 친구들에게 전파한다면 어떨까요?
-	- 문자메시지 뿐 아니라 Push 메시지로 전파한다면 어떨까요?
-	- 재난상황에서 재난 정보 전달의 효율성을 높이고자 하는 요구로 인해 프로젝트가 시작되었습니다.
-	- 상당수의 모바일 요금제에서 문자메시지가 무제한으로 포함되어 있습니다. 이것을 활용합니다.
-	- Push 메시지는 tcp/ip로 전달되어, 문자 메시지보다 재난상황에서 전달력이 높습니다.
-	- 실제로 동일본 대지진 때 모든 GSM/CDMA통신은 불가능했지만, VOIP를 이용한 메신저는 동작했습니다.
-	- 내가 전파한 재난메시지로 인해서 나의 친구와 가족을 위험에서 구할 수 있습니다.
+- 오픈마켓에 입점하지 않는 중소 온라인 패션 쇼핑몰 들이 많이 있습니다.
+- 개성있는 제품을 소량 생산하기 때문에, 구매 기회를 놓치는 경우가 많습니다.
+- 또한 오픈 마켓이라고 하더라도 자신의 취향에 맞는 제품의 새로운 정보를 제공 받기는 불가능합니다.
+- 이러한 니즈를 반영하여, 신제품 정보를 제공하는 어플리케이션을 개발합니다.
+- 자신의 취향/기호/선호 쇼핑몰을 선택하여, 신상품이 올라오면 push 메시지로 알려줍니다.
+- 비정형화 된 쇼핑몰을 각각 Parsing해야 하는 기술적 어려움이 예상됩니다.
+- 취향에 맞는 제품을 Define해야하는 기술적 어려움이 예상됩니다.
 
 ## Communication
 
@@ -56,7 +36,6 @@
 	- Slack : https://titanium-hackathon.slack.com
 	- Github : (waffle.io를 활용한 이슈관리)
 		- https://github.com/kosslab-kr/Titanium-BrandNew
-		- https://github.com/kosslab-kr/Titanium-SaveMyFriend
 	- Tidev.kr : 한국 타이타늄 사용자 모임
 		- 기술적 어려움에 대해 조언을 구하는 Q&A 채널로 활용
 	
@@ -89,8 +68,6 @@
 	- Project (Brand New) 등록 이슈 : 25건 중 완료 3건
 		https://github.com/kosslab-kr/Titanium-BrandNew/issues
 
-	- Project (Save My Friend) 등록 이슈 : 18건 중 완료 3건
-		https://github.com/kosslab-kr/Titanium-SaveMyFriend/issues
 
 	- 멘토가 한일 : 개발환경 구축 및 샘플 코드 빌드 가이드, 백엔드 서버 구축
 		읽을 거리 작성 (http://tidev.kr/t/topic/1833)
