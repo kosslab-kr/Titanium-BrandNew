@@ -28,7 +28,8 @@ $.init = function() {
 
 // fetch from parse
 // STUDY : http://parseplatform.github.io/docs/js/guide/#queries
-CTX.fetchGameScore = function() {
+// {e} is pulltorefresh event
+CTX.fetchGameScore = function(e) {
 	var GameScore = Parse.Object.extend("GameScore");
 	var query = new Parse.Query(GameScore);
 	// query.equalTo("playerName", "Dan Stemkoski");
@@ -37,9 +38,13 @@ CTX.fetchGameScore = function() {
 			APP.log("debug", "Successfully retrieved " + results.length + " scores.");
 	    // Do something with the returned Parse.Object values
 	    CTX.drawGameScore(results);
+
+			if (e) e.hide();
 	  },
 	  error: function(error) {
 			APP.log("error", "Error: " + error.code + " " + error.message);
+
+			if (e) e.hide();
 	  }
 	});
 };
