@@ -129,7 +129,7 @@ CTX.handleNavigation = function (e) {
           children: [ $.listView ]
         });
         CTX.ptr.setParent($.mainView);
-        CTX.ptr.on("release", CTX.fetchRecentQuestion);
+        CTX.ptr.on("release", CTX.fetchGameScore);
 
         // restore position
         if (CTX.scrollItemIndex) {
