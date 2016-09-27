@@ -37,7 +37,7 @@ var scrapHtml = function(request, response){
 
         if(itemName !== undefined && itemName !== ''){
           item.set("name", itemName); //item.setName(itemName);
-          if(promotion !== undefined){
+          if(promotion === "/web/upload/custom_7.gif"){
             itemPrice = $(this).find("div.description ul li:nth-child(3)>span").text();
           }else{
             itemPrice = $(this).find("div.description ul li:nth-child(2)>span").text();
