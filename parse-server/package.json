@@ -22,7 +22,9 @@
     "twilio": "~1.6.0",
     "better-npm-run": "~0.0.8",
     "cron": "~1.1.0",
-    "parse-dashboard": "^1.0.18"
+    "parse-dashboard": "^1.0.18",
+    "request"    : "latest",
+    "cheerio"    : "latest"
   },
   "scripts": {
     "start": "node index.js",
