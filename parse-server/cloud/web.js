@@ -54,7 +54,8 @@ var scrapHtml = function(request, response){
 
       Parse.Promise.when(promises).then(function() {
         console.log("success!!");
-        response.success();
+        campareItemList(response);
+        //response.success();
       }, function (error) {
         console.log("error! in promise");
         response.error();
@@ -64,3 +65,71 @@ var scrapHtml = function(request, response){
 
 };
 module.exports.scrapHtml = scrapHtml;
+
+var campareItemList = function(response){
+  var itemList = Parse.Object.extend("ItemList");
+  var itemListQuery = new Parse.Query(itemList);
+  itemListQuery.descending("createdAt");
+  itemListQuery.skip(1);
+  itemListQuery.first({
+    success: function(object) {
+      // Successfully retrieved the object.
+      item = Parse.Object.extend("Item");
+      itemQuery = new Parse.Query(item);
+
+      itemQuery.equalTo("ItemListId", object.id);
+      itemQuery.find({
+        success: function(results) {
+
+          itemList = Parse.Object.extend("ItemList");
+          itemListQuery = new Parse.Query(itemList);
+          itemListQuery.descending("createdAt");
+          itemListQuery.first({
+
+            success: function(currentItemList){
+
+              item = Parse.Object.extend("Item");
+              itemQuery = new Parse.Query(item);
+
+              itemQuery.equalTo("ItemListId", currentItemList.id);
+              itemQuery.find({
+                success: function(items){
+
+                  var result;
+                  for(var i = 0; i < results.length; i++){
+                    var compareResult = false;
+                    for(var j = 0; j < items.length; j++){
+                      if(results[i].get("name") === items[j].get("name")){
+                        compareResult = true;
+                      }
+                    }
+                    if(compareResult === false){
+                      result = "update!";
+                      break;
+                    }else{
+                      result = "Nothing happened";
+                    }
+                  }
+                  response.success(result);
+                },
+                error: function(error){
+                  alert("Error: " + error.code + " " + error.message);
+                }
+              });
+            },
+            error: function(error){
+              alert("Error: " + error.code + " " + error.message);
+            }
+          });
+        },
+        error: function(error) {
+          alert("Error: " + error.code + " " + error.message);
+        }
+      });
+    },
+    error: function(error) {
+      alert("Error: " + error.code + " " + error.message);
+    }
+  });
+
+}
