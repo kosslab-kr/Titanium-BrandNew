@@ -84,70 +84,52 @@ var campareItemList = function(response){
   var itemList = Parse.Object.extend("ItemList");
   var itemListQuery = new Parse.Query(itemList);
   itemListQuery.descending("createdAt");
-  itemListQuery.skip(1);
-  itemListQuery.first({
-    success: function(object) {
-      // Successfully retrieved the object.
+  itemListQuery.limit(2);
+  itemListQuery.find({
+    success: function(object){
+
+      if(object.length === 1){
+        response.success("There is no ItemList to compare.");
+      }
       item = Parse.Object.extend("Item");
       itemQuery = new Parse.Query(item);
-
-      itemQuery.equalTo("ItemListId", object.id);
+      itemQuery.equalTo("ItemListId", object[0].id);
       itemQuery.find({
-        success: function(results) {
+        success: function(latestItems){
 
-          itemList = Parse.Object.extend("ItemList");
-          itemListQuery = new Parse.Query(itemList);
-          itemListQuery.descending("createdAt");
-          itemListQuery.first({
+          itemQuery = new Parse.Query(item);
+          itemQuery.equalTo("ItemListId", object[1].id);
+          itemQuery.find({
+            success: function(previousItems){
 
-            success: function(currentItemList){
-
-              item = Parse.Object.extend("Item");
-              itemQuery = new Parse.Query(item);
-
-              itemQuery.equalTo("ItemListId", currentItemList.id);
-              itemQuery.find({
-                success: function(items){
-
-                  var result;
-                  if(results === undefined){
-                    result = "first save!";
-                  }else{
-                    for(var i = 0; i < results.length; i++){
-                      var compareResult = false;
-                      for(var j = 0; j < items.length; j++){
-                        if(results[i].get("name") === items[j].get("name")){
-                          compareResult = true;
-                        }
-                      }
-                      if(compareResult === false){
-                        result = "update!";
-                        break;
-                      }else{
-                        result = "Nothing happened";
-                      }
-                    }
+              for(var i = 0; i < latestItems.length; i++){
+                var compareResult = false;
+                for(var j = 0; j < previousItems.length; j++){
+                  if(latestItems[i].get("name") === previousItems[j].get("name")){
+                    compareResult = true;
                   }
-                  response.success(result);
-                },
-                error: function(error){
-                  alert("Error: " + error.code + " " + error.message);
                 }
-              });
+                if(compareResult === false){
+                  result = "update!";
+                  break;
+                }else{
+                  result = "Nothing happened";
+                }
+              }
+              response.success(result);
             },
             error: function(error){
               alert("Error: " + error.code + " " + error.message);
             }
           });
         },
-        error: function(error) {
+        error: function(error){
           alert("Error: " + error.code + " " + error.message);
         }
       });
     },
-    error: function(error) {
+    error: function(error){
       alert("Error: " + error.code + " " + error.message);
     }
   });
-
 }
