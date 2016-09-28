@@ -24,7 +24,9 @@
     "cron": "~1.1.0",
     "parse-dashboard": "^1.0.18",
     "request"    : "latest",
-    "cheerio"    : "latest"
+    "cheerio"    : "latest",
+    "iconv" : "latest",
+    "iconv-lite" : "latest"
   },
   "scripts": {
     "start": "node index.js",
