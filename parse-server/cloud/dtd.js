@@ -2,6 +2,9 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Parse = require('parse');
 
+var Iconv = require('iconv').Iconv;
+var iconv = new Iconv('EUC-KR', 'UTF-8//TRANSLIT//IGNORE');
+
 var scrapHtml = function(){
 
   var url = "http://www.chicfox.co.kr/shop/shopbrand.html?xcode=020&type=P";
@@ -17,7 +20,11 @@ var scrapHtml = function(){
       var item = new Item();
 
       //var itemName = $(this).find("li.pname font:nth-child(1)").text();
-      var itemName = $(this).find("li.pname").text();
+      var itemName = $(this).find("li.pname").text(); // utf-8
+      //itemName = decodeURIComponent(itemName);
+
+      itemName = iconv.convert(itemName).toString();
+
       var promotion = $(this).find("li.icons>img").prop('src');
       var itemPrice;
       var imgSrc = $(this).find("li.thumb img").attr('src');
@@ -33,6 +40,11 @@ var scrapHtml = function(){
         }else{
           itemPrice = $(this).find("div.item_list.list span.price").text();
         }
+
+        response.on('data',function(chunk){
+          itemPrice += iconv.convert(chunk).toString('UTF-8');
+        });
+
         item.set("price", itemPrice);
         item.set("imgsrc", imgSrc);
         item.set("url", "http://www.chicfox.co.kr/index.html");
