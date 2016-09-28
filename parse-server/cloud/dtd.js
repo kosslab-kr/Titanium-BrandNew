@@ -4,12 +4,12 @@ var Parse = require('parse');
 
 var scrapHtml = function(){
 
-  var url = "http://www.mutnam.com/product/list.html?cate_no=264";
+  var url = "http://www.coupang.com/np/categories/130800?eventCategory=categoryLeftMenu&eventLabel=";
   var Item = Parse.Object.extend("Item");
 
   request(url, function(error, response, body) {
     if (error) throw error;
-    console.log(body);
+
     var $ = cheerio.load(body);
 
   var postElements = $("ul.prdList.grid4 li.xans-record-");
@@ -18,9 +18,8 @@ var scrapHtml = function(){
       var itemPrice;
       var promotion = $(this).find("div.description div.icon div.promotion>img").prop('src');
       var itemName = $(this).find("div.description strong a span:nth-child(2)").text();
-      // decription -> class이름임. strong, span 은 태그. nth-여러개 있는 경우. 2는 2번째로 나오는 <span></>사이에 있는 정보 가져오기
-
       var imgSrc = $(this).find("div.thumbnail img").attr('src');
+
 
       if(itemName !== undefined && itemName !== ''){
         item.set("name", itemName);
