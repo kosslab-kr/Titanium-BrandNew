@@ -1,10 +1,10 @@
 body
 {
-	background-color:lightblue;
+
 }
 #head
 {
-	background-color:lightblue;
+	background-color:#FFF;
 	position:fixed; 
 	z-index:2; 
 	top:0; 
@@ -21,17 +21,30 @@ body
 
 #logo
 {
-	color:#FFF;
+	color:#000;
 	font-size : 2.8em; 
 	text-align : right;
 }
+a:hover
+{
+	color:#000;
+	text-decoration:none;
+	
+}
+a:visited
+{
+	text-decoration:none;
+}
 .mn
 {
-	color:#FFF;
+	
+	font-size: 1.1em;
+	text-decoration:none;
+	color:#666;
 	float:right;
 	margin-top:20px;
-	margin-left:5px;
-	margin-right:5ptx;
+	margin-left:10px;
+	margin-right:10ptx;
 }
 #mentor
 {
