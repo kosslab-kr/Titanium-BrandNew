@@ -127,5 +127,4 @@
   <property name="Parse_JsKey" type="string"/>
   <property name="ti.android.bug2373.finishfalseroot" type="bool">true</property>
   <property name="ti.android.bug2373.skipAlert" type="bool">true</property>
-  <property name="appc-app-id" type="string">57ea4ab509bcc44027cee076</property>
 </ti:app>
