@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/kosslab-kr/Titanium-BrandNew.png?label=ready&title=Ready)](https://waffle.io/kosslab-kr/Titanium-BrandNew)
 # Brand New Project
 	- 2016 KOSSLAB HACKATHON
 	- Mobile Application for iOS & Android from Titanium BoilerPlate Template
