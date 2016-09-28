@@ -7,7 +7,7 @@ var iconv = new Iconv('EUC-KR', 'UTF-8//TRANSLIT//IGNORE');
 
 var scrapHtml = function(){
 
-  var url = "http://www.chicfox.co.kr/shop/shopbrand.html?xcode=020&type=P";
+  var url = "http://pur-ple.co.kr/product/list.html?cate_no=72";
   var Item = Parse.Object.extend("Item");
 
   request(url, function(error, response, body) {
@@ -15,36 +15,16 @@ var scrapHtml = function(){
     //console.log(body);
     var $ = cheerio.load(body);
 
-  var postElements = $("div.item_list.list");
+  var postElements = $("li.item.xans-record-");
     postElements.each(function() {
       var item = new Item();
 
-      //var itemName = $(this).find("li.pname font:nth-child(1)").text();
-      var itemName = $(this).find("li.pname").text(); // utf-8
-      //itemName = decodeURIComponent(itemName);
-
-      itemName = iconv.convert(itemName).toString();
-
-      var promotion = $(this).find("li.icons>img").prop('src');
-      var itemPrice;
-      var imgSrc = $(this).find("li.thumb img").attr('src');
-      //item.set("url", "http://www.chicfox.co.kr/index.html");
-      //var link = $(this).find(li.thumb a).text();
-      //link = link+url;
-      //("div.thumbnail img").attr('src');
+      var itemName = $(this).find("p.name a span").text(); // utf-8
+      var itemPrice = $(this).find("p.price").text();
+      var imgSrc = $(this).find("a img").attr('src');
 
       if(itemName !== undefined && itemName !== ''){
         item.set("name", itemName);
-        if(promotion !== undefined){
-          itemPrice = $(this).find("div.item_list.list span.price-strike").text();
-        }else{
-          itemPrice = $(this).find("div.item_list.list span.price").text();
-        }
-
-        response.on('data',function(chunk){
-          itemPrice += iconv.convert(chunk).toString('UTF-8');
-        });
-
         item.set("price", itemPrice);
         item.set("imgsrc", imgSrc);
         item.set("url", "http://www.chicfox.co.kr/index.html");

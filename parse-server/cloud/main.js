@@ -128,3 +128,7 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
   responseManager.doCallback();
 
 });
+
+Parse.Cloud.define("scrapHtml", function(request, response) {
+  require('../cloud/web.js').scrapHtml(request, response);
+});
