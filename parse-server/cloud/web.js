@@ -8,6 +8,7 @@ var scrapHtml = function(request, response){
   var Item = Parse.Object.extend("Item");
   var ItemList = Parse.Object.extend("ItemList");
 
+
   //위에서 정의한 url을 request를 통해 Html을 가져온다. 가지고온 Html은 body에 있다.
   request_(url, function(error, resp, body) {
     if (error) throw error;
@@ -82,6 +83,7 @@ module.exports.scrapHtml = scrapHtml;
 
 var campareItemList = function(response){
   var itemList = Parse.Object.extend("ItemList");
+  var CurrentItemList = Parse.Object.extend("CurrentItemList");
   var itemListQuery = new Parse.Query(itemList);
   itemListQuery.descending("createdAt");
   itemListQuery.limit(2);
@@ -89,7 +91,19 @@ var campareItemList = function(response){
     success: function(object){
 
       if(object.length === 1){
-        response.success("There is no ItemList to compare.");
+        currentItemList = new CurrentItemList();
+        currentItemList.set("url", "http://www.mutnam.com/");
+        currentItemList.set("ItemListID", object[0].id);
+        currentItemList.set("ItemList", itemList);
+        currentItemList.save(null, {
+          success: function(){
+            console.log("save Item List");
+            response.success("There is no ItemList to compare.");
+          },
+          error: function(){
+
+          }
+        });
       }
       item = Parse.Object.extend("Item");
       itemQuery = new Parse.Query(item);
@@ -111,6 +125,19 @@ var campareItemList = function(response){
                 }
                 if(compareResult === false){
                   result = "update!";
+                  currentItemList_ = new CurrentItemList();
+                  currentItemList_.set("url", "http://www.mutnam.com/");
+                  currentItemList_.set("ItemListID", latestItems.id);
+                  currentItemList_.set("ItemList", itemList);
+                  currentItemList_.save(null, {
+                    success: function(){
+                      console.log("save Item List");
+                      response.success(result);
+                    },
+                    error: function(){
+
+                    }
+                  });
                   break;
                 }else{
                   result = "Nothing happened";
