@@ -1,14 +1,19 @@
+body
+{
+	background-color:lightblue;
+}
 #head
 {
+	background-color:lightblue;
 	position:fixed; 
 	z-index:2; 
 	top:0; 
-	background-color:#FFF;
-	width:700px;
+	width:1000px;
 
 }
 #body
 {
+	font-family: Verdana, Geneva, sans-serif;
 	position:relative;
 	padding-top: 120px;
 	z-index:1;
@@ -16,11 +21,13 @@
 
 #logo
 {
+	color:#FFF;
 	font-size : 2.8em; 
 	text-align : right;
 }
 .mn
 {
+	color:#FFF;
 	float:right;
 	margin-top:20px;
 	margin-left:5px;
