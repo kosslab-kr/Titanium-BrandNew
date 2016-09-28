@@ -16,7 +16,8 @@ var scrapHtml = function(){
     postElements.each(function() {
       var item = new Item();
 
-      var itemName = $(this).find("li.pname font font").text();
+      //var itemName = $(this).find("li.pname font:nth-child(1)").text();
+      var itemName = $(this).find("li.pname").text();
       var promotion = $(this).find("li.icons>img").prop('src');
       var itemPrice;
       var imgSrc = $(this).find("li.thumb img").attr('src');
