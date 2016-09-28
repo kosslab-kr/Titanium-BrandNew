@@ -83,7 +83,6 @@ module.exports.scrapHtml = scrapHtml;
 
 var campareItemList = function(response){
   var itemList = Parse.Object.extend("ItemList");
-  var CurrentItemList = Parse.Object.extend("CurrentItemList");
   var itemListQuery = new Parse.Query(itemList);
   itemListQuery.descending("createdAt");
   itemListQuery.limit(2);
@@ -91,20 +90,10 @@ var campareItemList = function(response){
     success: function(object){
 
       if(object.length === 1){
-        currentItemList = new CurrentItemList();
-        currentItemList.set("url", "http://www.mutnam.com/");
-        currentItemList.set("ItemListID", object[0].id);
-        currentItemList.set("ItemList", itemList);
-        currentItemList.save(null, {
-          success: function(){
-            console.log("save Item List");
-            response.success("There is no ItemList to compare.");
-          },
-          error: function(){
-
-          }
-        });
+        result = "There is no ItemList to compare.";
+        saveCurrentItemList(itemList, result, response);
       }
+
       item = Parse.Object.extend("Item");
       itemQuery = new Parse.Query(item);
       itemQuery.equalTo("ItemListId", object[0].id);
@@ -116,6 +105,7 @@ var campareItemList = function(response){
           itemQuery.find({
             success: function(previousItems){
 
+              result = "Nothing happened";
               for(var i = 0; i < latestItems.length; i++){
                 var compareResult = false;
                 for(var j = 0; j < previousItems.length; j++){
@@ -125,25 +115,13 @@ var campareItemList = function(response){
                 }
                 if(compareResult === false){
                   result = "update!";
-                  currentItemList_ = new CurrentItemList();
-                  currentItemList_.set("url", "http://www.mutnam.com/");
-                  currentItemList_.set("ItemListID", latestItems.id);
-                  currentItemList_.set("ItemList", itemList);
-                  currentItemList_.save(null, {
-                    success: function(){
-                      console.log("save Item List");
-                      response.success(result);
-                    },
-                    error: function(){
-
-                    }
-                  });
-                  break;
-                }else{
-                  result = "Nothing happened";
                 }
               }
-              response.success(result);
+              if(result === "update!"){
+                saveCurrentItemList(latestItems, result, response);
+              }else{
+                response.success(result);
+              }
             },
             error: function(error){
               alert("Error: " + error.code + " " + error.message);
@@ -157,6 +135,23 @@ var campareItemList = function(response){
     },
     error: function(error){
       alert("Error: " + error.code + " " + error.message);
+    }
+  });
+};
+
+function saveCurrentItemList(itemList, result, response){
+  var CurrentItemList = Parse.Object.extend("CurrentItemList");
+  currentItemList = new CurrentItemList();
+  currentItemList.set("url", "http://www.mutnam.com/");
+  currentItemList.set("ItemListID", itemList.id);
+  currentItemList.set("ItemList", itemList);
+  currentItemList.save(null, {
+    success: function(){
+      console.log("save CurrentItemList");
+      response.success(result);
+    },
+    error: function(){
+
     }
   });
 }
