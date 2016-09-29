@@ -96,14 +96,22 @@ function _itemSave(body, itemList, url) {
     postElements.each(function() {
       var item = new Item();
       var itemName = $(this).find("p.name a span").text();
-      var itemPrice = $(this).find("p.price").text();
+      //var itemPrice = $(this).find("p.price").text();
+      var itemPrice;
       var imgSrc = $(this).find("a img").attr('src');
+
+      var promotion = $(this).find("div.box.status.icon>img").prop('src');//할인 적용
 
       var p_link = $(this).find("a").attr('href');   // 해당 상품 주소 55
       p_link = "http://pur-ple.co.kr"+p_link;
 
       if(itemName !== undefined && itemName !== ''){
         item.set("name", itemName);
+        if(promotion === "/web/upload/benefit/benefit_shop1_821667577203545cf3b0.77032659.gif"){
+          itemPrice = $(this).find("div.box p.price_sale").text();
+        }else{
+          itemPrice = $(this).find("div.box p.price_strike").text();
+        }
         item.set("price", itemPrice);
         item.set("imgsrc", imgSrc);
         item.set("url", p_link);  //url변경 (쇼핑몰 대표 페이지->해당 상품 페이지주소)
