@@ -97,20 +97,25 @@ function _itemSave(body, itemList, url) {
       var item = new Item();
       var itemName = $(this).find("p.name a span").text();
       //var itemPrice = $(this).find("p.price").text();
+      //var itemPrice = $(this).find("p.price.strike").text();
+
       var itemPrice;
       var imgSrc = $(this).find("a img").attr('src');
 
-      var promotion = $(this).find("div.box.status.icon>img").prop('src');//할인 적용
+      var promotion = $(this).find("div.icon>img").prop('src');//할인 적용
 
       var p_link = $(this).find("a").attr('href');   // 해당 상품 주소 55
       p_link = "http://pur-ple.co.kr"+p_link;
 
       if(itemName !== undefined && itemName !== ''){
         item.set("name", itemName);
-        if(promotion === "/web/upload/benefit/benefit_shop1_821667577203545cf3b0.77032659.gif"){
-          itemPrice = $(this).find("div.box p.price_sale").text();
+        if(promotion === "/web/upload/benefit/benefit_shop1_821667577203545cf3b0.77032659.gif"
+            ||promotion === "/web/upload/benefit/benefit_shop1_73575457c77ee16ccb72.79719215.gif"){
+          itemPrice = $(this).find("p.price_sale").text();  //  할인가격 출력
+          //itemPrice = $(this).find("p.price.strike").text();
+          //itemPrice = itemPrice + "-" + $(this).find("p.price_sale span").text();
         }else{
-          itemPrice = $(this).find("div.box p.price_strike").text();
+          itemPrice = $(this).find("p.price.strike").text();
         }
         item.set("price", itemPrice);
         item.set("imgsrc", imgSrc);
