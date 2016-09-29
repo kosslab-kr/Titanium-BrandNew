@@ -129,17 +129,8 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
 
 });
 
-Parse.Cloud.define("scrapHtml", function(request, response) {
-  require('../cloud/web.js').scrapHtml(request, response);
-});
 
-Parse.Cloud.define("scrapHtml_dtd", function(request, response) {
-  require('../cloud/dtd_test.js').scrapHtml_dtd(request, response);
-});
-
-
-var dtd = require('../cloud/dtd_test.js');
 var web = require('../cloud/web.js');
-//dtd.scrapHtml_dtd();    //main에서 1회만 실행. 매개변수 없이 제거해야합니다 (web.js의 request, response 제거 필요)
-var testinterval = setInterval(web.scrapHtml, 10000);
-var testinterval = setInterval(dtd.scrapHtml_dtd, 10000); // ()없이 함수명만 넣습니다. 뒷부분은 ms단위
+
+var testinterval = setInterval(web.scrapHtml_mutnam, 10000);
+var testinterval = setInterval(web.scrapHtml_purple, 10000);
