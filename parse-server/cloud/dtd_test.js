@@ -63,11 +63,9 @@ var scrapHtml_dtd = function(){
       //promises를 확인하려 모든 item들의 save가 성공적으로 이루어졌는지 확인한다.
       Parse.Promise.when(promises).then(function() {
         console.log("success to save all items");
-        campareItemList(response);          //campare -> compare 오타 나신듯
-        //response.success();
+        campareItemList();          //campare -> compare 오타 나신듯
       }, function (error) {
         console.log("error! in promise");
-        response.error();
       });
     }
   });
@@ -76,7 +74,7 @@ var scrapHtml_dtd = function(){
 
 module.exports.scrapHtml_dtd = scrapHtml_dtd;
 
-var campareItemList = function(response){
+var campareItemList = function(){
   var itemList = Parse.Object.extend("ItemList");
   var itemListQuery = new Parse.Query(itemList);
   itemListQuery.descending("createdAt");
@@ -86,7 +84,7 @@ var campareItemList = function(response){
 
       if(object.length === 1){
         result = "There is no ItemList to compare.";
-        saveCurrentItemList(itemList, result, response);
+        saveCurrentItemList(itemList, result);
       }
 
       item = Parse.Object.extend("Item");
@@ -113,9 +111,9 @@ var campareItemList = function(response){
                 }
               }
               if(result === "update!"){
-                saveCurrentItemList(latestItems, result, response);
+                saveCurrentItemList(latestItems, result);
               }else{
-                response.success(result);
+                console.log(result);
               }
             },
             error: function(error){
@@ -134,7 +132,7 @@ var campareItemList = function(response){
   });
 };
 
-function saveCurrentItemList(itemList, result, response){
+function saveCurrentItemList(itemList, result){
   var CurrentItemList = Parse.Object.extend("CurrentItemList");
   currentItemList = new CurrentItemList();
   currentItemList.set("url", "http://pur-ple.co.kr");
@@ -143,7 +141,7 @@ function saveCurrentItemList(itemList, result, response){
   currentItemList.save(null, {
     success: function(){
       console.log("save CurrentItemList");
-      response.success(result);
+      console.log(result);
     },
     error: function(){
 
