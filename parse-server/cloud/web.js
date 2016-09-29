@@ -67,7 +67,8 @@ function _itemSave(body, itemList, url) {
       //상품명과 상품 이미지
       var itemName = $(this).find("div.description strong a span:nth-child(2)").text();
       var imgSrc = $(this).find("div.thumbnail img").attr('src');
-
+      var p_link = $(this).find("div.thumbnail a").attr('href');  // 해당 상품 주소 55
+      p_link = "http://www.mutnam.com"+p_link;
       //찾아낸 데이터중 필요가 없는 데이터를 제외하고 item object로 가공한다.
       if(itemName !== undefined && itemName !== ''){
         item.set("name", itemName); //item.setName(itemName);
@@ -80,7 +81,8 @@ function _itemSave(body, itemList, url) {
         //item object의 필드값을 채워주고
         item.set("price", itemPrice);
         item.set("imgsrc", imgSrc);
-        item.set("url", "http://www.mutnam.com/");
+        //item.set("url", "http://www.mutnam.com/");
+        item.set("url", p_link);      //url변경 (쇼핑몰 대표 페이지->해당 상품 페이지주소)
         item.set("ItemListId", itemList.id);
         item.set("ItemList", itemList);
 
@@ -96,11 +98,15 @@ function _itemSave(body, itemList, url) {
       var itemPrice = $(this).find("p.price").text();
       var imgSrc = $(this).find("a img").attr('src');
 
+      var p_link = $(this).find("a").attr('href');   // 해당 상품 주소 55
+      p_link = "http://pur-ple.co.kr"+p_link;
+
       if(itemName !== undefined && itemName !== ''){
         item.set("name", itemName);
         item.set("price", itemPrice);
         item.set("imgsrc", imgSrc);
-        item.set("url", "http://pur-ple.co.kr");
+        //item.set("url", "http://pur-ple.co.kr");
+        item.set("url", p_link);  //url변경 (쇼핑몰 대표 페이지->해당 상품 페이지주소)
         item.set("ItemListId", itemList.id);
         item.set("ItemList", itemList);
 
