@@ -69,7 +69,7 @@ var scrapHtml = function(request, response){
       //promises를 확인하려 모든 item들의 save가 성공적으로 이루어졌는지 확인한다.
       Parse.Promise.when(promises).then(function() {
         console.log("success to save all items");
-        campareItemList(response);
+        compareItemList(response);          //campare -> compare 오타 나신듯-> 수정
         //response.success();
       }, function (error) {
         console.log("error! in promise");
@@ -79,9 +79,10 @@ var scrapHtml = function(request, response){
   });
 
 };
+
 module.exports.scrapHtml = scrapHtml;
 
-var campareItemList = function(response){
+var compareItemList = function(response){ //campare -> compare 오타 나신듯-> 수정
   var itemList = Parse.Object.extend("ItemList");
   var itemListQuery = new Parse.Query(itemList);
   itemListQuery.descending("createdAt");

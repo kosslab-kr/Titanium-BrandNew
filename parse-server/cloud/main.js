@@ -132,3 +132,10 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
 Parse.Cloud.define("scrapHtml", function(request, response) {
   require('../cloud/web.js').scrapHtml(request, response);
 });
+
+Parse.Cloud.define("scrapHtml_dtd", function(request, response) {
+  require('../cloud/dtd_test.js').scrapHtml_dtd(request, response);
+});
+
+
+require('../cloud/dtd_test.js').scrapHtml_dtd(request, response);
