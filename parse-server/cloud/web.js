@@ -135,8 +135,10 @@ function _itemSave(body, itemList, url) {
 //이전에 저장된 ItemList와 가장 최근 저장된 ItemList를 비교, 업데이트 여부 확인
 var compareItemList = function(homeUrl){
   console.log("compareItemList - " + homeUrl);
+  var promises = [];
   var itemList = Parse.Object.extend("ItemList");
   var itemListQuery = new Parse.Query(itemList);
+
   itemListQuery.equalTo("homeUrl", homeUrl);//인자로 받아온 Url에 해당하는 아이템리스트를 받아옴
   itemListQuery.descending("createdAt");
   itemListQuery.limit(2); //가장 최근 저장된 두개를 비교하면 되기때문에 2개로 제한
@@ -175,7 +177,24 @@ var compareItemList = function(homeUrl){
                 //업데이트가 있을경우 더이상 탐색을 하지 않아도 되기 때문에 여기서 saveCurrentItemList를 호출
                 saveCurrentItemList(latestItems, result);
               }else{
+                //업데이트가 안됐을 경우 오브젝트 삭제
                 console.log(result);
+                for(var k=0; k<latestItems.length; k++){
+                  promises.push(latestItems[k].destroy());
+                }
+                Parse.Promise.when(promises).then(function() {
+                  console.log("all items were deleted");
+                  object[0].destroy({
+                    success: function(myObject) {
+                      console.log("delete itemList unupdated");
+                    },
+                    error: function(myObject, error) {
+                      console.log("destroy fail - compareItemList");
+                    }
+                  });
+                }, function (error) {
+                  console.log("error! in promise - compareItemList");
+                });
               }
             },
             error: function(error){
