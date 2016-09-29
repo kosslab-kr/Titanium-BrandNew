@@ -3,60 +3,80 @@
   	<head>
    	 	<title> Titanium Project Brand-New</title>
     	<meta charset="UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	
 	</head>  
 	<!-- 스타일 시트를 외부링크 -->
-	<LINK href="main.css" type="text/css" rel="STYLESHEET"> 
-
+	<LINK href="./css/main.css" type="text/css" rel="STYLESHEET">
+	<LINK href="./css/head.css" type="text/css" rel="STYLESHEET">
+    <LINK href="./css/slide.css" type="text/css" rel="STYLESHEET">
+    <LINK href="./css/contents.css" type="text/css" rel="STYLESHEET">
+    <LINK href="./css/introduce.css" type="text/css" rel="STYLESHEET">
+    <LINK href="./css/frontend.css" type="text/css" rel="STYLESHEET">
+    <LINK href="./css/backend.css" type="text/css" rel="STYLESHEET">
+    <!-- 자바 스크립 외부링크 -->
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/slide.js"></script>
 	<body>
 		<!-- (main.html) -->
+        <!-- 메뉴 상단바 -->
 		<div id="head">
     		<span id="logo">Brand New</span>
-        	<a class="mn" href = "#Backend">Backend Server Logic</a>
+        	<a class="mn1" href = "#Backend">Backend Server Logic</a>
         	<a class="mn" href = "#Frontend">Frontend UI</a>
         	<a class="mn" href = "#팀원소개">Introduce</a>
         	<a class="mn" href = "#기획내용">Contents</a>
     	</div>
-        <div id="start-back">
-        	<div id="start-text">
-        		<p class="s1">여러분의 신상품을 확인해보세요</p>
-            	<p class="s2">Brand New는 고객이 원하는 쇼핑몰의 신상품을 알려드립니다.</p>
-            </div>
-        </div>
-		<div id="기획내용">
-			<P class="c1">오픈마켓에 입점하지 않는 중소 온라인 패션 쇼핑몰 들이 많이 있습니다.</p>
-            <p class="c2">개성있는 제품을 소량 생산하기 때문에, 구매 기회를 놓치는 경우가 많습니다.</p>   
-            <p class="c3">또한 오픈 마켓이라고 하더라도 자신의 취향에 맞는 제품의 새로운 정보를 제공 받기는 불가능합니다.</p>   
-            <p class="c4">이러한 니즈를 반영하여, 신제품 정보를 제공하는 어플리케이션을 개발합니다.</p>   
-            <p class="c5">자신의 취향/기호/선호 쇼핑몰을 선택하여, 신상품이 올라오면 push 메시지로 알려줍니다.</p>  
-            <p class="c6">비정형화 된 쇼핑몰을 각각 Parsing해야 하는 기술적 어려움이 예상됩니다.</p>  
-            <p class="c7">취향에 맞는 제품을 Define해야하는 기술적 어려움이 예상됩니다.</p>  
+        <div id=body>
+        	<!-- 슬라이드 사진 -->
+        	<div class="slide">
+				<ul class="slide_ul">
+					<li><a href="#"><img src="../images/slide_1.png" alt="dane"></a></li>
+					<li><a href="#"><img src="../images/slide_2.png" alt="dane"></a></li>
+					<li><a href="#"><img src="../images/slide_3.png" alt="dane"></a></li>
+					<li><a href="#"><img src="../images/slide_4.png" alt="dane"></a></li>
+				</ul>
+        		<div id="s-text">
+        			<p class="s1">여러분의 신상품을 확인해보세요</p>
+        	    	<p class="s2">Brand New는 고객이 원하는 쇼핑몰의 신상품을 알려드립니다.</p>
+        	    </div>
+        	</div>
+			<div id="기획내용">
+            	<hr width="50%" color="#666666" noshade/> <!-- 구분선 -->
+            	<h1 class="c0">Contents</h1>
+				<P class="c1">오픈마켓에 입점하지 않는 중소 온라인 패션 쇼핑몰 들이 많이 있습니다.</p>
+        	    <p class="c2">개성있는 제품을 소량 생산하기 때문에, 구매 기회를 놓치는 경우가 많습니다.</p>   
+        	    <p class="c3">또한 오픈 마켓이라고 하더라도 자신의 취향에 맞는 제품의 새로운 정보를 제공 받기는 불가능합니다.</p>   
+        	    <p class="c4">이러한 니즈를 반영하여, 신제품 정보를 제공하는 어플리케이션을 개발합니다.</p>   
+        	    <p class="c5">자신의 취향/기호/선호 쇼핑몰을 선택하여, 신상품이 올라오면 push 메시지로 알려줍니다.</p>  
+        	    <p class="c6">비정형화 된 쇼핑몰을 각각 Parsing해야 하는 기술적 어려움이 예상됩니다.</p>  
+        	    <p class="c7">취향에 맞는 제품을 Define해야하는 기술적 어려움이 예상됩니다.</p>  
      
-		</div>
-		<div id="팀원소개">
-			<li id="mentor">Mentor</li>
-			<ul>
-		    <li class="ml1">김동우(gimdongwoo) : Mentor</li>
-			</ul>
-			<li id="project">Project [Brand New]</li>
-			<ul>
-		   		<li class="pl1">서장원 (wkddnjset) : Team Manager, Document, Reaction, etc</li>
-				<li class="pl2">최석환 (soulmade00) : Fronted UI, Push Notification</li>
-				<li class="pl3">김유진 (Yoojinn) : Fronted UI, Push Notification</li>
-				<li class="pl4">이필구 (Feelgu) : Frontend UI, Push Notification</li>
-				<li class="pl5">유승연 (dbtmddus) : Backend Server Logic</li>
-				<li class="pl6">조소영 (s2s22) : Backend Server Logic</li>
-				<li class="pl7">오충엽 (ChungHyup) : Backend Server Logic</li>
-		  	</ul>
-	     
-
-		</div>
-		<div id="Frontend">
+			</div>
+			<div id="팀원소개">
+            	<hr width="50%" color="#666666" noshade/> <!-- 구분선 -->
+                <h1 class="c0">Introduce of Brand New</h1>
+				<li id="mentor">Mentor</li>
+				<ul>
+			    <li class="ml1">김동우(gimdongwoo) : Mentor</li>
+				</ul>
+					<li id="project">Project [Brand New]</li>
+				<ul>
+			   		<li class="pl1">서장원 (wkddnjset) : Team Manager, Document, Reaction, etc</li>
+					<li class="pl2">최석환 (soulmade00) : Fronted UI, Push Notification</li>
+					<li class="pl3">김유진 (Yoojinn) : Fronted UI, Push Notification</li>
+					<li class="pl4">이필구 (Feelgu) : Frontend UI, Push Notification</li>
+					<li class="pl5">유승연 (dbtmddus) : Backend Server Logic</li>
+					<li class="pl6">조소영 (s2s22) : Backend Server Logic</li>
+					<li class="pl7">오충엽 (ChungHyup) : Backend Server Logic</li>
+		  		</ul>
+			</div>
+			<div id="Frontend">
 		
-		</div>
-		<div id="Backend">
+			</div>
+			<div id="Backend">
 		
+			</div>
 		</div>
-	</div>
   	</body>
 </html>
