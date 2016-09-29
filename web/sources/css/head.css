@@ -1,0 +1,55 @@
+
+#head
+{
+	background-color:#FFF;
+	position:fixed; 
+	z-index:13; 
+	top:0; 
+	width:100%;
+	margin-right:2%;
+
+}
+#s-text.s1
+{
+	z-index:100;
+	background-color:#B6B6B6;
+}
+
+#logo
+{
+	color:#000;
+	font-size : 2.8em; 
+	text-align : right;
+}
+a:hover
+{
+	color:#000;
+	text-decoration:none;
+	
+}
+a:visited
+{
+	text-decoration:none;
+}
+.mn
+{
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.1em;
+	text-decoration:none;
+	color:#666;
+	float:right;
+	margin-top:1.5em;
+	margin-left:1em;
+	margin-right:0.2em;
+}
+.mn1
+{
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.1em;
+	text-decoration:none;
+	color:#666;
+	float:right;
+	margin-top:1.5em;
+	margin-left:1em;
+	margin-right:1.8em;
+}

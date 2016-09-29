@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+/*RESET*/
+/*#slide
+{
+	margin:0; padding:0;
+	list-style:none;
+	max-width:100%; 
+	border:0;
+	text-decoration:none; 
+	color:#333; 
+	display:inline-block;
+	border-collapse:collapse; border-spacing:0;
+	vertical-align:middle;
+	font-family: "NanumGothic","나눔고딕" , sans-serif ; font-size:12px;
+	height:100%;
+	cursor:pointer;
+	font-style:normal; 
+	font-weight:normal;
+	text-align:center
+	position:relative; 
+	width: 900px; margin: 0 auto; 
+	display: block;height:376px;
+}
+*/
+	/**{margin:0; padding:0;}
+	ul,ol,dl{list-style:none;}
+	img , video{max-width:100%; border:0;}
+	a{text-decoration:none; color:#333; display:inline-block;}
+	table{border-collapse:collapse; border-spacing:0;}
+	input , select {vertical-align:middle;}
+	body{font-family: "NanumGothic","나눔고딕" , sans-serif ; font-size:12px;}
+	html{height:100%;}
+	label{cursor:pointer;}
+	i , em , address{font-style:normal; font-weight:normal;}
+/*슬라이드 몸통 */
+.slide{margin-top:30em; text-align:center; position:relative; width: 900px; margin: 0 auto; display: block;height:376px;}
+
+.slide_ul{display: block;}
+.slide_ul>li{position:absolute; top:0; left:0; list-style:none;z-index:10; display: block;}
+.slide_ul>li img{}
+li{list-style: none;}
+
+.show{display:block;}
+
+
+/* 하단 동그라미 버튼 CSS*/
+
