@@ -9,7 +9,7 @@ var ResponseManager = UTIL.ResponseManager;
 var isBanTime = UTIL.isBanTime;
 
 
-//선언한 함수는 set time out 또는 set interver로 메인 끄트머리에 해놓고 실행되게 하면 될듯
+//선언한 함수는 set time out 또는 set interval로 메인 끄트머리에 해놓고 실행되게 하면 될듯
 
 /********************************************************************************************************************************************
 * Installation
@@ -137,5 +137,7 @@ Parse.Cloud.define("scrapHtml_dtd", function(request, response) {
   require('../cloud/dtd_test.js').scrapHtml_dtd(request, response);
 });
 
-
-//require('../cloud/dtd_test.js').scrapHtml_dtd(request, response);
+//scrapHtml_dtd();
+var dtd = require('../cloud/dtd_test.js');
+//dtd.scrapHtml_dtd(request, respons);
+dtd.scrapHtml_dtd();    //setInterval("dtd.scrapHtml_dtd()", 5000); 로 하면, 5초마다 실행될듯. 장소 이동 후 곧 작성후 테스트 예정 
