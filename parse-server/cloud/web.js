@@ -13,6 +13,7 @@ var scrapHtml_mutnam = function(){
     //itemList를 생성 후 저장한다.
     //내용은 비어있지만 이후 생성되는 item이 itemList의 id를 가지며 논리적으로는 itemList가 item들을 가지게 된다
     var itemList = new ItemList();
+    itemList.set("homeUrl", "http://www.mutnam.com/");
     itemList.save(null, {
       success: function(itemList) {
         console.log('success to save itemList');
@@ -34,6 +35,7 @@ var scrapHtml_purple = function(){
     if (error) throw error;
 
     var itemList = new ItemList();
+    itemList.set("homeUrl", "http://pur-ple.co.kr");
     itemList.save(null, {
       success: function(itemList) {
         console.log('success to save itemList');
@@ -112,20 +114,22 @@ function _itemSave(body, itemList, url) {
   //promises를 확인하려 모든 item들의 save가 성공적으로 이루어졌는지 확인한다.
   Parse.Promise.when(promises).then(function() {
     console.log("success to save all items");
-    compareItemList();          //campare -> compare 오타 나신듯-> 수정
+    compareItemList(itemList.get("homeUrl"));          //campare -> compare 오타 나신듯-> 수정
   }, function (error) {
     console.log("error! in promise");
   });
 }
 
-var compareItemList = function(){ //campare -> compare 오타 나신듯-> 수정
+var compareItemList = function(homeUrl){ //campare -> compare 오타 나신듯-> 수정
+  console.log("compareItemList - " + homeUrl);
   var itemList = Parse.Object.extend("ItemList");
   var itemListQuery = new Parse.Query(itemList);
+  itemListQuery.equalTo("homeUrl", homeUrl);
   itemListQuery.descending("createdAt");
   itemListQuery.limit(2);
   itemListQuery.find({
     success: function(object){
-
+      console.log("sucess compareItemList");
       if(object.length === 1){
         result = "There is no ItemList to compare.";
         saveCurrentItemList(itemList, result);
