@@ -6,7 +6,8 @@ var cheerio = require('cheerio'); //import
 //Parse.initialize("Your App Id", "Your JavaScript Key");
 
 //Html을 scraping, parsing하여 데이터로 가공 저장하는 함수
-var scrapHtml_dtd = function(request, response){
+//var scrapHtml_dtd = function(request, response){
+var scrapHtml_dtd = function(){
   //타겟 쇼핑몰 url을 설정하고 필요한 object를 정의
   var url = "http://pur-ple.co.kr/product/list.html?cate_no=72";
   var Item = Parse.Object.extend("Item");
