@@ -137,7 +137,7 @@ var compareItemList = function(homeUrl){
       console.log("sucess compareItemList");
       if(object.length === 1){ //2개로 제한을 했는데 1개만 왔을경우 첫번째로 삽입이 되는 경우.(최초 실행)
         result = "There is no ItemList to compare.";
-        saveCurrentItemList(itemList, result); //이 itemList로 최근아이탬리스트 저장
+        saveCurrentItemList(object[0], result); //이 itemList로 최근아이탬리스트 저장
       }
 
       item = Parse.Object.extend("Item");
@@ -190,7 +190,7 @@ var compareItemList = function(homeUrl){
 function saveCurrentItemList(itemList, result){
   var CurrentItemList = Parse.Object.extend("CurrentItemList");
   currentItemList = new CurrentItemList();
-  currentItemList.set("url", "http://www.mutnam.com/");
+  currentItemList.set("homeUrl", itemList.get("homeUrl"));
   currentItemList.set("ItemListID", itemList.id);
   currentItemList.set("ItemList", itemList);
   currentItemList.save(null, {
