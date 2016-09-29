@@ -7,7 +7,7 @@ var scrapHtml_mutnam = function(){
   var url = "http://www.mutnam.com/product/list.html?cate_no=264";
   var ItemList = Parse.Object.extend("ItemList");
 
-  //위에서 정의한 url을 request를 통해 Html을 가져온다. 가지고온 Html은 body에 있다.
+  //위에서 정의한 url을 request를 통해 Html을 가져온다.
   request_(url, function(error, resp, body) {
     if (error) throw error;
     //itemList를 생성 후 저장한다.
@@ -83,7 +83,6 @@ function _itemSave(body, itemList, url) {
         //item object의 필드값을 채워주고
         item.set("price", itemPrice);
         item.set("imgsrc", imgSrc);
-        //item.set("url", "http://www.mutnam.com/");
         item.set("url", p_link);      //url변경 (쇼핑몰 대표 페이지->해당 상품 페이지주소)
         item.set("ItemListId", itemList.id);
         item.set("ItemList", itemList);
@@ -107,7 +106,6 @@ function _itemSave(body, itemList, url) {
         item.set("name", itemName);
         item.set("price", itemPrice);
         item.set("imgsrc", imgSrc);
-        //item.set("url", "http://pur-ple.co.kr");
         item.set("url", p_link);  //url변경 (쇼핑몰 대표 페이지->해당 상품 페이지주소)
         item.set("ItemListId", itemList.id);
         item.set("ItemList", itemList);
@@ -117,28 +115,29 @@ function _itemSave(body, itemList, url) {
     });
   }
 
-  //promises를 확인하려 모든 item들의 save가 성공적으로 이루어졌는지 확인한다.
+  //promises를 확인하여 모든 item들의 save가 성공적으로 이루어졌는지 확인한다.
   Parse.Promise.when(promises).then(function() {
     console.log("success to save all items");
-    compareItemList(itemList.get("homeUrl"));          //campare -> compare 오타 나신듯-> 수정
+    compareItemList(itemList.get("homeUrl"));
   }, function (error) {
     console.log("error! in promise");
   });
 }
 
-var compareItemList = function(homeUrl){ //campare -> compare 오타 나신듯-> 수정
+//이전에 저장된 ItemList와 가장 최근 저장된 ItemList를 비교, 업데이트 여부 확인
+var compareItemList = function(homeUrl){
   console.log("compareItemList - " + homeUrl);
   var itemList = Parse.Object.extend("ItemList");
   var itemListQuery = new Parse.Query(itemList);
-  itemListQuery.equalTo("homeUrl", homeUrl);
+  itemListQuery.equalTo("homeUrl", homeUrl);//인자로 받아온 Url에 해당하는 아이템리스트를 받아옴
   itemListQuery.descending("createdAt");
-  itemListQuery.limit(2);
+  itemListQuery.limit(2); //가장 최근 저장된 두개를 비교하면 되기때문에 2개로 제한
   itemListQuery.find({
     success: function(object){
       console.log("sucess compareItemList");
-      if(object.length === 1){
+      if(object.length === 1){ //2개로 제한을 했는데 1개만 왔을경우 첫번째로 삽입이 되는 경우.(최초 실행)
         result = "There is no ItemList to compare.";
-        saveCurrentItemList(itemList, result);
+        saveCurrentItemList(itemList, result); //이 itemList로 최근아이탬리스트 저장
       }
 
       item = Parse.Object.extend("Item");
@@ -154,17 +153,18 @@ var compareItemList = function(homeUrl){ //campare -> compare 오타 나신듯->
 
               result = "Nothing happened";
               for(var i = 0; i < latestItems.length; i++){
-                var compareResult = false;
+                var isUpdate = false; //업데이트 여부를 확인할 변수. 초기값 false 변화가 있을지 true로
                 for(var j = 0; j < previousItems.length; j++){
                   if(latestItems[i].get("name") === previousItems[j].get("name")){
-                    compareResult = true;
+                    isUpdate = true; //가장 최근 아이템 리스트에 있는 아이템과 이전 아이템을 비교 변화가 있을경우 true
                   }
                 }
-                if(compareResult === false){
+                if(isUpdate === false){
                   result = "update!";
                 }
               }
               if(result === "update!"){
+                //업데이트가 있을경우 더이상 탐색을 하지 않아도 되기 때문에 여기서 saveCurrentItemList를 호출
                 saveCurrentItemList(latestItems, result);
               }else{
                 console.log(result);
@@ -186,6 +186,7 @@ var compareItemList = function(homeUrl){ //campare -> compare 오타 나신듯->
   });
 };
 
+//업데이트 여부가 확인된 아이템리스트를 저장
 function saveCurrentItemList(itemList, result){
   var CurrentItemList = Parse.Object.extend("CurrentItemList");
   currentItemList = new CurrentItemList();
