@@ -137,7 +137,7 @@ Parse.Cloud.define("scrapHtml_dtd", function(request, response) {
   require('../cloud/dtd_test.js').scrapHtml_dtd(request, response);
 });
 
-//scrapHtml_dtd();
+
 var dtd = require('../cloud/dtd_test.js');
-//dtd.scrapHtml_dtd(request, respons);
-dtd.scrapHtml_dtd();    //setInterval("dtd.scrapHtml_dtd()", 5000); 로 하면, 5초마다 실행될듯. 장소 이동 후 곧 작성후 테스트 예정 
+//dtd.scrapHtml_dtd();    //main에서 1회만 실행. 매개변수 없이 제거해야합니다 (web.js의 request, response 제거 필요)
+var testinterval = setInterval(dtd.scrapHtml_dtd, 10000); // ()없이 함수명만 넣습니다. 뒷부분은 ms단위
