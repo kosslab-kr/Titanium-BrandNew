@@ -30,6 +30,15 @@ var PURPLE = {
   unPromotionPrice : {css : "p.price.strike"}
 };
 
+var WITHYOON = {
+  homeUrl : {src : "http://withyoon.com/"},
+  itemUrl : {css : "div.box p.name a:nth-child(2)"},
+  postElements : {css : "ul.prdList.column3 li.item.xans-record-"},
+  itemName : {css : "div.box p.name span"},
+  imgSrc : {css : "div.box p.name a img"},
+  price : {css : "div.box li:nth-child(1)>span"}
+};
+
 //Html을 scraping, parsing하여 데이터로 가공 저장하는 함수
 var scrapHtml_mutnam = function(){
   //타겟 쇼핑몰 url을 설정하고 필요한 object를 정의
@@ -77,6 +86,27 @@ var scrapHtml_purple = function(){
   });
 };
 
+var scrapHtml_withyoon = function(){
+  var url = "http://withyoon.com/index.html";
+  var ItemList = Parse.Object.extend("ItemList");
+
+  request_(url, function(error, resp, body) {
+    if (error) throw error;
+
+    var itemList = new ItemList();
+    itemList.set("homeUrl", WITHYOON.homeUrl.src);
+    itemList.save(null, {
+      success: function(itemList) {
+        console.log('success to save itemList');
+        _itemSave(body, itemList, url);
+      },
+      error: function(itemList, error) {
+        console.log('Failed to create new object, with error code: ' + error.message);
+      }
+    });
+  });
+};
+
 //Html을 파싱하여 각각의 item으로 가공을 하여 저장하는 부분
 function _itemSave(body, itemList, url) {
   //body를 cheerio를 통해 파싱하기 위한 부분
@@ -87,10 +117,13 @@ function _itemSave(body, itemList, url) {
   var postElements;
   //상품 목록을 포함하는 부분을 찾아 postElements로 설정한다. 아래 결과 postElement는 여러개의 li가 된다고 할 수 있다.
   var ENUM;
+  console.log(itemList.get("homeUrl"));
   if(itemList.get("homeUrl")=== MUTNAM.homeUrl.src){
     ENUM = MUTNAM;
   }else if(itemList.get("homeUrl")=== PURPLE.homeUrl.src){
     ENUM = PURPLE;
+  }else if(itemList.get("homeUrl") === WITHYOON.homeUrl.src){
+    ENUM = WITHYOON;
   }
   postElements = $(ENUM.postElements.css);
   //각각의 element들에 대하여 function을 실행한다.
@@ -103,30 +136,36 @@ function _itemSave(body, itemList, url) {
     var imgSrc = $(this).find(ENUM.imgSrc.css).attr('src');
     var p_link = ENUM.homeUrl.src + $(this).find(ENUM.itemUrl.css).attr('href');  // 해당 상품 주소 55
     //price를 찾아내기 위한 부분인 promotion을 정의한다.
-    var promotion = $(this).find(ENUM.promotion.css).prop('src');
+    //var promotion = $(this).find(ENUM.promotion.css).prop('src');
     //찾아낸 데이터중 필요가 없는 데이터를 제외하고 item object로 가공한다.
     if(itemName !== undefined && itemName !== ''){
       item.set("name", itemName); //item.setName(itemName);
       //promotion에 있는 이미지가 아래 경로와 같을때를 제외하고는 2번째 li 아래에 있는 span에 상품명이 존재한다.
-      var isOnSale = false;
-      for(var i in ENUM.promotionImg){
-        if(promotion === ENUM.promotionImg[i].src){
-          isOnSale = true;
+      if(ENUM.promotion !== undefined){
+        var promotion = $(this).find(ENUM.promotion.css).prop('src');
+
+        var isOnSale = false;
+        for(var i in ENUM.promotionImg){
+          if(promotion === ENUM.promotionImg[i].src){
+            isOnSale = true;
+          }
         }
+
+        if(isOnSale){
+          itemPrice = $(this).find(ENUM.promotionPrice.css).text();
+        }else{
+          itemPrice = $(this).find(ENUM.unPromotionPrice.css).text();
+        }
+      }else{
+        itemPrice=$(this).find(ENUM.price.css).text();
       }
 
-      if(isOnSale){
-        itemPrice = $(this).find(ENUM.promotionPrice.css).text();
-      }else{
-        itemPrice = $(this).find(ENUM.unPromotionPrice.css).text();
-      }
       //item object의 필드값을 채워주고
       item.set("price", itemPrice);
       item.set("imgsrc", imgSrc);
       item.set("url", p_link);      //url변경 (쇼핑몰 대표 페이지->해당 상품 페이지주소)
       item.set("ItemListId", itemList.id);
       item.set("ItemList", itemList);
-
       //object의 내용을 저장한다. 저장한 결과를 pomises배열에 넣어 추후 모두 잘 들어갔는지 확인한다.
       promises.push(item.save());
     }
@@ -241,3 +280,4 @@ function saveCurrentItemList(itemList, result){
 
 module.exports.scrapHtml_mutnam = scrapHtml_mutnam;
 module.exports.scrapHtml_purple = scrapHtml_purple;
+module.exports.scrapHtml_withyoon = scrapHtml_withyoon;
