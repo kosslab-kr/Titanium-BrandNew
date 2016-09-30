@@ -12,7 +12,6 @@ CTX.$observer = null;
 /**
  * Initializes the controller
  */
-//나는 조소영입니다.
 $.init = function() {
 	APP.log("debug", "default.init | " + JSON.stringify(CONFIG));
 	$.NavigationBar.setBackgroundColor(APP.Settings.colors.primary);
