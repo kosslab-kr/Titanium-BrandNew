@@ -270,6 +270,19 @@ function saveCurrentItemList(itemList, result){
   currentItemList.set("ItemList", itemList);
   currentItemList.save(null, {
     success: function(){
+      Parse.Push.send({
+        where: query,
+        data: {
+          alert: "신상품이 업데이트 되었습니다!"
+        }
+      }, {
+        success: function() {
+          // Push was successful
+        },
+        error: function(error) {
+          // Handle error
+        }
+      });
       console.log("save CurrentItemList");
       console.log(result);
     },
