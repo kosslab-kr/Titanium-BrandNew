@@ -12,7 +12,7 @@
   <fullscreen>false</fullscreen>
   <navbar-hidden>false</navbar-hidden>
   <analytics>true</analytics>
-  <guid>00a5e812-0209-4616-9000-15354731c6b3</guid>
+  <guid>66f7d06d-e022-4a88-84b2-ca2d40c8d95b</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <ios>
     <min-ios-ver>8.0</min-ios-ver>
@@ -73,6 +73,7 @@
         <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="org.appcelerator.titanium.TiTranslucentActivity" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Translucent"/>
         <activity android:configChanges="screenSize" android:name="ti.modules.titanium.ui.android.TiPreferencesActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="ti.modules.titanium.media.TiCameraActivity" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Translucent.NoTitleBar.Fullscreen"/>
+				<meta-data android:name="com.parse.push.gcm_sender_id" android:value="id:446461095494"/>
       </application>
       <!-- Camera Permissions -->
       <uses-permission android:name="android.permission.CALL_PHONE"/>
