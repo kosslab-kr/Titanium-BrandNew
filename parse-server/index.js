@@ -27,13 +27,13 @@ var api = new ParseServer({
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   },
-  // push: {
-  //   android: { senderId: process.env.GCM_SENDER_ID, apiKey: process.env.GCM_API_KEY },
-  //   ios: [
-  //     { pfx: __dirname + "/push/aps_development.p12", bundleId: process.env.APP_BUNDLE_ID, production: false },
-  //     { pfx: __dirname + "/push/aps_production.p12", bundleId: process.env.APP_BUNDLE_ID, production: true }
-  //   ]
-  // },
+  push: {
+    android: { senderId: process.env.GCM_SENDER_ID, apiKey: process.env.GCM_API_KEY }
+    // ios: [
+    //   { pfx: __dirname + "/push/aps_development.p12", bundleId: process.env.APP_BUNDLE_ID, production: false },
+    //   { pfx: __dirname + "/push/aps_production.p12", bundleId: process.env.APP_BUNDLE_ID, production: true }
+    // ]
+  },
   // filesAdapter: new S3Adapter(
   //   process.env.S3_ACCESS_KEY,
   //   process.env.S3_SECRET_KEY,

@@ -465,9 +465,9 @@ var APP = {
     APP.build();
 
     // Open the main window
-    //APP.MainWindow.open();
-    APP.defaultView = Alloy.createController('_default').getView();
-    APP.defaultView.open();
+    APP.MainWindow.open();
+    //APP.defaultView = Alloy.createController('_default').getView();
+    //APP.defaultView.open();
 
     // joinView close
     if (APP.joinView) {

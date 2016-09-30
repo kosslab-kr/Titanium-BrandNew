@@ -16,33 +16,45 @@
 ".mainView[platform=ios]": { top:67 }
 ".mainView[platform=android]": { top:47 }
 
-"#icon" : {
-    width: '50dp', height: '50dp', left: 0
+
+"#symbol": {
+//    left: 15,
+//    color: "black",
+//    font: { fontSize: 34, fontWeight: 'bold' }
 },
-"#title" : {
-    color: 'black',
-    font: { fontFamily:'Arial', fontSize: '20dp', fontWeight:'bold' },
-    left: '60dp', top: 0
+
+"#symbol[platform=android]": {
+    left: 0
+}
+
+"#atomProperties": {
+    top: 0, left: 80, right: 0, bottom: 0,
+    layout: "vertical"
 },
-"#subtitle" : {
-    color: 'gray',
-    font: { fontFamily:'Arial', fontSize: '14dp' },
-    left: '60dp', top: '25dp'
-}
+"#atomProperties[platform=android]": {
+    left: 65
+},
 
-".playerName": {
-	color: 'black',
-	font: { fontFamily:'Arial', fontSize: '16dp' },
-	left: '10dp'
-}
-
-".score": {
-	color: 'black',
-	font: { fontFamily:'Arial', fontSize: '20dp', fontWeight:'bold' }
-}
-
-".cheatMode": {
-	color: 'black',
-	font: { fontFamily:'Arial', fontSize: '12dp', fontWeight:'bold' },
-	right: '10dp'
+"#name": {
+    left: 0, top: 4,
+    color: "black",
+    textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+    font: { fontSize: 16 }
+},
+"#secondLine": {
+    left: 0, right: 0,
+    layout: "horizontal"
+},
+".fieldLabel": {
+    color:"#999"
+},
+".line2": {
+    font: { fontSize: 10 }
+},
+"#number": {
+    width: 30,
+    color: 'red'
+},
+"#mass": {
+    color: "blue"
 }

@@ -2,31 +2,29 @@
 	<View id="window" class="container">
 		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" />
 		<View id="mainView" class="mainView">
-			<ListView id="listView" defaultItemTemplate="template">
-
+			<ListView id="listView" defaultItemTemplate="elementTemplate">
 				<!-- The Templates tag sets the ListView's templates property -->
-
 				<Templates>
-
-					<!-- Define your item templates within the Templates tags or use the
-					Require tag to include a view that only contains an ItemTemplate -->
-
-					<ItemTemplate name="template">
-						<ImageView bindId="pic" id="icon" />
-						<Label bindId="info" id="title" />
-						<Label bindId="es_info" id="subtitle" />
-					</ItemTemplate>
-
+					<ItemTemplate name="elementTemplate">
+			            <ImageView bindId="symbol" id="image" />
+			            <View id="atomProperties">
+			                <Label bindId="name" id="name" />
+			                <View id="secondLine">
+			                    <Label class="line2 fieldLabel" text="Number: " />
+			                    <Label class="line2" bindId="number" id="number" />
+			                    <Label class="line2 fieldLabel" text="Atomic Mass: " />
+			                    <Label class="line2" bindId="mass" id="mass" />
+			                </View>
+			            </View>
+			        </ItemTemplate>
 					<ItemTemplate name="GameScoreTemplate">
 						<Label bindId="playerName" class="playerName" />
 						<Label bindId="score" class="score" />
 						<Label bindId="cheatMode" class="cheatMode" />
 					</ItemTemplate>
-
 				</Templates>
 
 				<ListSection id="GameScoreSection" headerTitle="GameScore"/>
-
 				<ListSection headerTitle="Fruit / Frutas">
 
 					<!-- You can specify any ListItem or ListDataItem properties in ListItem -->

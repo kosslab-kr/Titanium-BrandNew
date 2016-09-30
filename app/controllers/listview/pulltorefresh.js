@@ -29,7 +29,7 @@ $.init = function() {
 // STUDY : http://parseplatform.github.io/docs/js/guide/#queries
 // {e} is pulltorefresh event
 CTX.fetchGameScore = function(e) {
-	var GameScore = Parse.Object.extend("GameScore");
+	/*var GameScore = Parse.Object.extend("GameScore");
 	var query = new Parse.Query(GameScore);
 	// query.equalTo("playerName", "Dan Stemkoski");
 	query.find({
@@ -38,6 +38,24 @@ CTX.fetchGameScore = function(e) {
 	    // Do something with the returned Parse.Object values
 	    CTX.drawGameScore(results);
 
+			if (e) e.hide();
+	  },
+	  error: function(error) {
+			APP.log("error", "Error: " + error.code + " " + error.message);
+
+			if (e) e.hide();
+	  }
+	});*/
+	
+	var GameScore = Parse.Object.extend("GameScore");
+	var query = new Parse.Query(GameScore);
+	//query.equalTo("homeUrl", "http://www.mutnam.com/");//어떤 사이트의 아이템 목록을 가져올지 입력
+	//query.equalTo("homeUrl", "http://pur-ple.co.kr");//어떤 사이트의 아이템 목록을 가져올지 입력
+	//query.descending("createdAt");//CurrentItemList를 날짜 내림차순으로 정리
+    query.find({
+      sucess: function(results){
+	    // Do something with the returned Parse.Object values
+	    CTX.drawGameScore(results);
 			if (e) e.hide();
 	  },
 	  error: function(error) {
@@ -62,19 +80,32 @@ CTX.drawGameScore = function(GameScoreCollection) {
 // create listitem row
 // STUDY : http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.ListItem
 CTX.createGameSCoreRow = function (GameScoreModel) {
-  var _playerName = GameScoreModel.get('playerName');
-  var _score = GameScoreModel.get('score');
-	var _cheatMode = GameScoreModel.get('cheatMode') ? "TRUE" : "FALSE";
+  var _Name = shoplistModel.get('name');
+  var _price = shoplistModel.get('price');
+  var _imgsrc = shoplistModel.get('imgsrc');
+  var _url = shoplistModel.get('url');
+  //var _playerName = GameScoreModel.get('playerName');
+  //var _score = GameScoreModel.get('score');
+  //var _cheatMode = GameScoreModel.get('cheatMode') ? "TRUE" : "FALSE";
+
+  
   return  {
-    template : 'GameScoreTemplate',
+	//template : 'GameScoreTemplate',
+    //symbol: { image: _imgsrc},
+    //mass : {text : _price}, 
+    //playerName : {text : _Name},
+    //number : { text : _url}
+    
+        template : 'GameScoreTemplate',
     playerName : { text: _playerName },
-		score : { text: _score },
-		cheatMode : { text: _cheatMode },
+        score : { text: _score },
+        cheatMode : { text: _cheatMode },
     properties : {
-        itemId : GameScoreModel.id
+       itemId : GameScoreModel.id
     }
+
   };
-}
+};
 
 /**
 * scroll end for position save
