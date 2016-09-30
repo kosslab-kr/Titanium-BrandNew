@@ -2,6 +2,7 @@ var CurrentItemList = Parse.Object.extend("CurrentItemList");//자바로 생각�
 var query = new Parse.Query(CurrentItemList);//쿼리 생성
 query.equalTo("homeUrl", "http://www.mutnam.com/");//어떤 사이트의 아이템 목록을 가져올지 입력
 //query.equalTo("homeUrl", "http://pur-ple.co.kr");//어떤 사이트의 아이템 목록을 가져올지 입력
+//query.equalTo("homeUrl", "http://withyoon.com/");//어떤 사이트의 아이템 목록을 가져올지 입력
 query.descending("createdAt");//CurrentItemList를 날짜 내림차순으로 정리
 query.first({//첫번째 것을 받아오기 때문에 가장 최근 것을 가져오게됨
   success: function(itemList){//여기서 itemList가 위에서 query.first로 받아온 결과
