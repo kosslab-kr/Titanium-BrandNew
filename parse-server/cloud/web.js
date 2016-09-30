@@ -273,8 +273,8 @@ function saveCurrentItemList(itemList, result){
       console.log("save CurrentItemList");
       console.log(result);
     },
-    error: function(){
-
+    error: function(error){
+      alert("Error: " + error.code + " " + error.message);
     }
   });
 }

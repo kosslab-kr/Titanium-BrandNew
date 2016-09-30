@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ti:app 
+<ti:app
   xmlns:ti="http://ti.appcelerator.org">
-  <id>nipa.titanium.boilerplate</id>
+  <id>nipa.titanium.brandnew</id>
   <name>TitaniumBoilerPlate</name>
   <version>1.0</version>
   <publisher>DongwooGim</publisher>
@@ -57,7 +57,7 @@
       </dict>
     </plist>
   </ios>
-  <android 
+  <android
     xmlns:android="http://schemas.android.com/apk/res/android">
     <manifest android:versionCode="100" android:versionName="1.0.0">
       <!-- Need to specify at least API level 11 for Titanium SDK 3.2.x and prior -->
