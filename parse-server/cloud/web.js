@@ -15,6 +15,20 @@ var MUTNAM = {
   unPromotionPrice : {css : "div.description ul li:nth-child(2)>span"}
 };
 
+var PURPLE = {
+  homeUrl : {src : "http://pur-ple.co.kr"},
+  itemUrl : {css : "a"},
+  postElements : {css : "li.item.xans-record-"},
+  promotion : {css : "div.icon>img"},
+  itemName : {css : "p.name a span"},
+  imgSrc : {css : "a img"},
+  promotionImg: {
+    first : {src : "/web/upload/benefit/benefit_shop1_821667577203545cf3b0.77032659.gif"},
+    second : {src : "/web/upload/benefit/benefit_shop1_73575457c77ee16ccb72.79719215.gif"}
+  },
+  promotionPrice : {css : "p.price_sale"},
+  unPromotionPrice : {css : "p.price.strike"}
+};
 
 //Html을 scraping, parsing하여 데이터로 가공 저장하는 함수
 var scrapHtml_mutnam = function(){
@@ -72,85 +86,51 @@ function _itemSave(body, itemList, url) {
   var promises = [];
   var postElements;
   //상품 목록을 포함하는 부분을 찾아 postElements로 설정한다. 아래 결과 postElement는 여러개의 li가 된다고 할 수 있다.
+  var ENUM;
   if(url === "http://www.mutnam.com/product/list.html?cate_no=264"){
-    postElements = $(MUTNAM.postElements.css);
-    //각각의 element들에 대하여 function을 실행한다.
-    postElements.each(function() {
-      /*
-      */
-      var item = new Item();
-      //itemPrice의 경우 이 사이트에서는 상품의 할인 여부에 따라 위치가 달라져 아래(if문)에서 정의한다.
-      var itemPrice;
-      //price를 찾아내기 위한 부분인 promotion을 정의한다.
-      var promotion = $(this).find(MUTNAM.promotion.css).prop('src');
-      //상품명과 상품 이미지
-      var itemName = $(this).find(MUTNAM.itemName.css).text();
-      var imgSrc = $(this).find(MUTNAM.imgSrc.css).attr('src');
-      var p_link = MUTNAM.homeUrl.src + $(this).find(MUTNAM.itemUrl.css).attr('href');  // 해당 상품 주소 55
-      //찾아낸 데이터중 필요가 없는 데이터를 제외하고 item object로 가공한다.
-      if(itemName !== undefined && itemName !== ''){
-        item.set("name", itemName); //item.setName(itemName);
-        //promotion에 있는 이미지가 아래 경로와 같을때를 제외하고는 2번째 li 아래에 있는 span에 상품명이 존재한다.
-        var isOnSale = false;
-        for(var i in MUTNAM.promotionImg){
-          if(promotion === MUTNAM.promotionImg[i].src){
-            isOnSale = true;
-          }
-        }
-
-        if(isOnSale){
-          itemPrice = $(this).find(MUTNAM.promotionPrice.css).text();
-        }else{
-          itemPrice = $(this).find(MUTNAM.unPromotionPrice.css).text();
-        }
-        //item object의 필드값을 채워주고
-        item.set("price", itemPrice);
-        item.set("imgsrc", imgSrc);
-        item.set("url", p_link);      //url변경 (쇼핑몰 대표 페이지->해당 상품 페이지주소)
-        item.set("ItemListId", itemList.id);
-        item.set("ItemList", itemList);
-
-        //object의 내용을 저장한다. 저장한 결과를 pomises배열에 넣어 추후 모두 잘 들어갔는지 확인한다.
-        promises.push(item.save());
-      }
-    });
+    ENUM = MUTNAM;
   }else if(url === "http://pur-ple.co.kr/product/list.html?cate_no=72"){
-    postElements = $("li.item.xans-record-");
-    postElements.each(function() {
-      var item = new Item();
-      var itemName = $(this).find("p.name a span").text();
-      //var itemPrice = $(this).find("p.price").text();
-      //var itemPrice = $(this).find("p.price.strike").text();
-
-      var itemPrice;
-      var imgSrc = $(this).find("a img").attr('src');
-
-      var promotion = $(this).find("div.icon>img").prop('src');//할인 적용
-
-      var p_link = $(this).find("a").attr('href');   // 해당 상품 주소 55
-      p_link = "http://pur-ple.co.kr"+p_link;
-
-      if(itemName !== undefined && itemName !== ''){
-        item.set("name", itemName);
-        if(promotion === "/web/upload/benefit/benefit_shop1_821667577203545cf3b0.77032659.gif"
-            ||promotion === "/web/upload/benefit/benefit_shop1_73575457c77ee16ccb72.79719215.gif"){
-          itemPrice = $(this).find("p.price_sale").text();  //  할인가격 출력
-          //itemPrice = $(this).find("p.price.strike").text();
-          //itemPrice = itemPrice + "-" + $(this).find("p.price_sale span").text();
-        }else{
-          itemPrice = $(this).find("p.price.strike").text();
-        }
-        item.set("price", itemPrice);
-        item.set("imgsrc", imgSrc);
-        item.set("url", p_link);  //url변경 (쇼핑몰 대표 페이지->해당 상품 페이지주소)
-        item.set("ItemListId", itemList.id);
-        item.set("ItemList", itemList);
-
-        promises.push(item.save());
-      }
-    });
+    ENUM = PURPLE;
   }
+  postElements = $(ENUM.postElements.css);
+  //각각의 element들에 대하여 function을 실행한다.
+  postElements.each(function() {
+    var item = new Item();
+    //itemPrice의 경우 이 사이트에서는 상품의 할인 여부에 따라 위치가 달라져 아래(if문)에서 정의한다.
+    var itemPrice;
+    //price를 찾아내기 위한 부분인 promotion을 정의한다.
+    var promotion = $(this).find(ENUM.promotion.css).prop('src');
+    //상품명과 상품 이미지
+    var itemName = $(this).find(ENUM.itemName.css).text();
+    var imgSrc = $(this).find(ENUM.imgSrc.css).attr('src');
+    var p_link = ENUM.homeUrl.src + $(this).find(ENUM.itemUrl.css).attr('href');  // 해당 상품 주소 55
+    //찾아낸 데이터중 필요가 없는 데이터를 제외하고 item object로 가공한다.
+    if(itemName !== undefined && itemName !== ''){
+      item.set("name", itemName); //item.setName(itemName);
+      //promotion에 있는 이미지가 아래 경로와 같을때를 제외하고는 2번째 li 아래에 있는 span에 상품명이 존재한다.
+      var isOnSale = false;
+      for(var i in ENUM.promotionImg){
+        if(promotion === ENUM.promotionImg[i].src){
+          isOnSale = true;
+        }
+      }
 
+      if(isOnSale){
+        itemPrice = $(this).find(ENUM.promotionPrice.css).text();
+      }else{
+        itemPrice = $(this).find(ENUM.unPromotionPrice.css).text();
+      }
+      //item object의 필드값을 채워주고
+      item.set("price", itemPrice);
+      item.set("imgsrc", imgSrc);
+      item.set("url", p_link);      //url변경 (쇼핑몰 대표 페이지->해당 상품 페이지주소)
+      item.set("ItemListId", itemList.id);
+      item.set("ItemList", itemList);
+
+      //object의 내용을 저장한다. 저장한 결과를 pomises배열에 넣어 추후 모두 잘 들어갔는지 확인한다.
+      promises.push(item.save());
+    }
+  });
   //promises를 확인하여 모든 item들의 save가 성공적으로 이루어졌는지 확인한다.
   Parse.Promise.when(promises).then(function() {
     console.log("success to save all items");
