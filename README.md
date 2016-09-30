@@ -1,40 +1,42 @@
 [![Stories in Ready](https://badge.waffle.io/kosslab-kr/Titanium-BrandNew.png?label=ready&title=Ready)](https://waffle.io/kosslab-kr/Titanium-BrandNew)
 [![Stories in In Progress](https://badge.waffle.io/kosslab-kr/Titanium-BrandNew.png?label=in%20progress&title=In%20Progress)](https://waffle.io/kosslab-kr/Titanium-BrandNew)
 
-# NIPA-Titanium-BoilerPlate-BaaS
-Titanium mobile application develop framework Boiler Plate Project using BaaS - Support by NIPA (http://www.nipa.kr/)
-
-## Purpose
-- To provide pre-create all the features required for common mobile apps.
-- Using the same JS code, the iOS / Android to provide the same operation.
-- Reduction of the time and cost to be used in the development
+# Brand New Project
+	- 2016 KOSSLAB HACKATHON
+	- Mobile Application for iOS & Android from Titanium BoilerPlate Template
 
 ## Goal
-- The default behavior when Application intialized.
-- The UI elements that are common used like Listview, ScrollView, Drawer Menu, Form, Grid, etc.
-- User register, login, SNS connected Login.
-- Push send/receive, operation according to the option.
-- Live streaming data such as chat.
-- Analysis for growth hacking like A/B test, action tracking, etc.
+- 오픈마켓에 입점하지 않는 중소 온라인 패션 쇼핑몰 들이 많이 있습니다.
+- 개성있는 제품을 소량 생산하기 때문에, 구매 기회를 놓치는 경우가 많습니다.
+- 또한 오픈 마켓이라고 하더라도 자신의 취향에 맞는 제품의 새로운 정보를 제공 받기는 불가능합니다.
+- 이러한 니즈를 반영하여, 신제품 정보를 제공하는 어플리케이션을 개발합니다.
+- 자신의 취향/기호/선호 쇼핑몰을 선택하여, 신상품이 올라오면 push 메시지로 알려줍니다.
 
 ## Milestone
-- 2016 1Q : The beginning of the project, writing code base, default behavior.
-- 2016 2Q : Compatible Parse server. User register/login. Push send/receive.
-- 2016 3Q : Development the UI elements that are common used.
-- 2016 4Q : SNS connected integration. Operation according to the push option.
-- 2017 1Q : Analysis. complex UI elements. Settings for push, user, etc.
-- 2017 2Q : Live streaming data, messsaging UI, background refresh.
-- 2017 3Q : Development project auto generator, features manager.
-- 2017 4Q : Code modularization for update. Development auto updater.
+
+## Member & Role (Github ID)
+
+- Mentor
+	- 김동우 (gimdongwoo) : Mentor
+- Member
+	- 서장원 (wkddnjset) : Team Manager, Document, Reaction, etc
+	- 최석환 (soulmade00) : Frontend UI, Push Notification
+	- 김유진 (Yoojinn) : Frontend UI, Push Notification
+	- 이필구 (Feelgu) : Frontend UI, Push Notification
+	- 유승연 (dbtmddus) : Backend Server Logic
+	- 조소영 (s2s22) : Backend Server Logic
+	- 오충엽 (ChungHyup) : Backend Server Logic
 
 ## Reference
 - Titanium : https://github.com/appcelerator
+- Titanium BoilerPlate Template : https://github.com/gimdongwoo/NIPA-Titanium-BoilerPlate-BaaS
 - Parse : https://github.com/ParsePlatform
 - Heroku : https://github.com/heroku
 
 ## Support
 - NIPA : http://www.nipa.kr/
 - Open Frontier Lab : http://devlab.oss.kr/
+- KOSSLAB HACKATHON : https://www.kosshackathon.kr/
 
 ## License
 - Apache License, Version 2.0

@@ -23,7 +23,8 @@ var createAlarms = function(answersId, pushData) {
     "type" : pushData.type
   }).save();
 };
-module.exports.createAlarms = createAlarms;
+
+module.exports.createAlarms = createAlarms; //왜 필요?? 서버에서 돌리려면 아마 필요할듯
 
 // 1명에게 push 발송
 var sendPushForOneUser = function(answersId, pushData) {

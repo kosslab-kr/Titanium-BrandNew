@@ -8,6 +8,9 @@ var delay = UTIL.delay;
 var ResponseManager = UTIL.ResponseManager;
 var isBanTime = UTIL.isBanTime;
 
+
+//선언한 함수는 set time out 또는 set interval로 메인 끄트머리에 해놓고 실행되게 하면 될듯
+
 /********************************************************************************************************************************************
 * Installation
 ********************************************************************************************************************************************/
@@ -123,4 +126,12 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
   }
 
   responseManager.doCallback();
+
 });
+
+
+var web = require('../cloud/web.js');
+
+//var testinterval = setInterval(web.scrapHtml_mutnam, 15000);
+//var testinterval = setInterval(web.scrapHtml_purple, 15000);
+//var testinterval = setInterval(web.scrapHtml_withyoon, 50000);

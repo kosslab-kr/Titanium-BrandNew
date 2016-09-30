@@ -25,7 +25,7 @@ $.init = function() {
 
 	}
 };
-
+//로그인 부분 구현
 CTX.doLogin = function() {
 	var userId = $.userId.value;
 	var userPw = $.userPw.value;

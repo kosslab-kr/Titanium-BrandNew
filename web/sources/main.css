@@ -1,0 +1,56 @@
+body
+{
+
+}
+#head
+{
+	background-color:#FFF;
+	position:fixed; 
+	z-index:2; 
+	top:0; 
+	width:1000px;
+
+}
+#body
+{
+	font-family: Verdana, Geneva, sans-serif;
+	position:relative;
+	padding-top: 120px;
+	z-index:1;
+}
+
+#logo
+{
+	color:#000;
+	font-size : 2.8em; 
+	text-align : right;
+}
+a:hover
+{
+	color:#000;
+	text-decoration:none;
+	
+}
+a:visited
+{
+	text-decoration:none;
+}
+.mn
+{
+	
+	font-size: 1.1em;
+	text-decoration:none;
+	color:#666;
+	float:right;
+	margin-top:20px;
+	margin-left:10px;
+	margin-right:10ptx;
+}
+#mentor
+{
+	font-size : 25px;
+}
+#project
+{
+	font-size : 25px;
+}

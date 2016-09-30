@@ -1,0 +1,19 @@
+
+#body
+{
+
+	padding-top: 10em;
+
+	
+}
+
+a:hover
+{
+	color:#000;
+	text-decoration:none;
+	
+}
+a:visited
+{
+	text-decoration:none;
+}
