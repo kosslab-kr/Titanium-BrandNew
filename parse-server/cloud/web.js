@@ -42,7 +42,7 @@ var scrapHtml_mutnam = function(){
     //itemList를 생성 후 저장한다.
     //내용은 비어있지만 이후 생성되는 item이 itemList의 id를 가지며 논리적으로는 itemList가 item들을 가지게 된다
     var itemList = new ItemList();
-    itemList.set("homeUrl", "http://www.mutnam.com/");
+    itemList.set("homeUrl", MUTNAM.homeUrl.src);
     itemList.save(null, {
       success: function(itemList) {
         console.log('success to save itemList');
@@ -64,7 +64,7 @@ var scrapHtml_purple = function(){
     if (error) throw error;
 
     var itemList = new ItemList();
-    itemList.set("homeUrl", "http://pur-ple.co.kr");
+    itemList.set("homeUrl", PURPLE.homeUrl.src);
     itemList.save(null, {
       success: function(itemList) {
         console.log('success to save itemList');
@@ -87,9 +87,9 @@ function _itemSave(body, itemList, url) {
   var postElements;
   //상품 목록을 포함하는 부분을 찾아 postElements로 설정한다. 아래 결과 postElement는 여러개의 li가 된다고 할 수 있다.
   var ENUM;
-  if(url === "http://www.mutnam.com/product/list.html?cate_no=264"){
+  if(itemList.get("homeUrl")=== MUTNAM.homeUrl.src){
     ENUM = MUTNAM;
-  }else if(url === "http://pur-ple.co.kr/product/list.html?cate_no=72"){
+  }else if(itemList.get("homeUrl")=== PURPLE.homeUrl.src){
     ENUM = PURPLE;
   }
   postElements = $(ENUM.postElements.css);
@@ -98,12 +98,12 @@ function _itemSave(body, itemList, url) {
     var item = new Item();
     //itemPrice의 경우 이 사이트에서는 상품의 할인 여부에 따라 위치가 달라져 아래(if문)에서 정의한다.
     var itemPrice;
-    //price를 찾아내기 위한 부분인 promotion을 정의한다.
-    var promotion = $(this).find(ENUM.promotion.css).prop('src');
     //상품명과 상품 이미지
     var itemName = $(this).find(ENUM.itemName.css).text();
     var imgSrc = $(this).find(ENUM.imgSrc.css).attr('src');
     var p_link = ENUM.homeUrl.src + $(this).find(ENUM.itemUrl.css).attr('href');  // 해당 상품 주소 55
+    //price를 찾아내기 위한 부분인 promotion을 정의한다.
+    var promotion = $(this).find(ENUM.promotion.css).prop('src');
     //찾아낸 데이터중 필요가 없는 데이터를 제외하고 item object로 가공한다.
     if(itemName !== undefined && itemName !== ''){
       item.set("name", itemName); //item.setName(itemName);
