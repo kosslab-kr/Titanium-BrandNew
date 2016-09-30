@@ -132,6 +132,6 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
 
 var web = require('../cloud/web.js');
 
-var testinterval = setInterval(web.scrapHtml_mutnam, 15000);
-var testinterval = setInterval(web.scrapHtml_purple, 15000);
-var testinterval = setInterval(web.scrapHtml_withyoon, 50000);
+var testinterval = setInterval(web.scrapHtml_mutnam, 60*60*1000);
+var testinterval = setInterval(web.scrapHtml_purple, 60*60*1000);
+var testinterval = setInterval(web.scrapHtml_withyoon, 60*60*1000);
