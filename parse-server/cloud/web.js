@@ -33,7 +33,7 @@ var PURPLE = {
 var WITHYOON = {
   homeUrl : {src : "http://withyoon.com/"},
   itemUrl : {css : "div.box p.name a:nth-child(2)"},
-  postElements : {css : "ul.prdList.column3 li.item.xans-record-"},
+  postElements : {css : "div.xans-element-.xans-product.xans-product-listmain-2.xans-product-listmain.xans-product-2 ul.prdList.column3 li.item.xans-record-"},
   itemName : {css : "div.box p.name span"},
   imgSrc : {css : "div.box p.name a img"},
   price : {css : "div.box li:nth-child(1)>span"}
