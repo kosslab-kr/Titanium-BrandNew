@@ -1,6 +1,21 @@
 var request_ = require('request');
 var cheerio = require('cheerio'); //import
 
+var MUTNAM = {
+  homeUrl : {src : "http://www.mutnam.com/"},
+  itemUrl : {css : "div.thumbnail a"},
+  postElements : {css : "ul.prdList.grid4 li.xans-record-"},
+  promotion : {css : "div.description div.icon div.promotion>img"},
+  itemName : {css : "div.description strong a span:nth-child(2)"},
+  imgSrc : {css : "div.thumbnail img"},
+  promotionImg: {
+    first : {src : "/web/upload/custom_7.gif"}
+  },
+  promotionPrice : {css : "div.description ul li:nth-child(3)>span"},
+  unPromotionPrice : {css : "div.description ul li:nth-child(2)>span"}
+};
+
+
 //Html을 scraping, parsing하여 데이터로 가공 저장하는 함수
 var scrapHtml_mutnam = function(){
   //타겟 쇼핑몰 url을 설정하고 필요한 object를 정의
@@ -58,27 +73,35 @@ function _itemSave(body, itemList, url) {
   var postElements;
   //상품 목록을 포함하는 부분을 찾아 postElements로 설정한다. 아래 결과 postElement는 여러개의 li가 된다고 할 수 있다.
   if(url === "http://www.mutnam.com/product/list.html?cate_no=264"){
-    postElements = $("ul.prdList.grid4 li.xans-record-");
+    postElements = $(MUTNAM.postElements.css);
     //각각의 element들에 대하여 function을 실행한다.
     postElements.each(function() {
+      /*
+      */
       var item = new Item();
       //itemPrice의 경우 이 사이트에서는 상품의 할인 여부에 따라 위치가 달라져 아래(if문)에서 정의한다.
       var itemPrice;
       //price를 찾아내기 위한 부분인 promotion을 정의한다.
-      var promotion = $(this).find("div.description div.icon div.promotion>img").prop('src');
+      var promotion = $(this).find(MUTNAM.promotion.css).prop('src');
       //상품명과 상품 이미지
-      var itemName = $(this).find("div.description strong a span:nth-child(2)").text();
-      var imgSrc = $(this).find("div.thumbnail img").attr('src');
-      var p_link = $(this).find("div.thumbnail a").attr('href');  // 해당 상품 주소 55
-      p_link = "http://www.mutnam.com"+p_link;
+      var itemName = $(this).find(MUTNAM.itemName.css).text();
+      var imgSrc = $(this).find(MUTNAM.imgSrc.css).attr('src');
+      var p_link = MUTNAM.homeUrl.src + $(this).find(MUTNAM.itemUrl.css).attr('href');  // 해당 상품 주소 55
       //찾아낸 데이터중 필요가 없는 데이터를 제외하고 item object로 가공한다.
       if(itemName !== undefined && itemName !== ''){
         item.set("name", itemName); //item.setName(itemName);
         //promotion에 있는 이미지가 아래 경로와 같을때를 제외하고는 2번째 li 아래에 있는 span에 상품명이 존재한다.
-        if(promotion === "/web/upload/custom_7.gif"){
-          itemPrice = $(this).find("div.description ul li:nth-child(3)>span").text();
+        var isOnSale = false;
+        for(var i in MUTNAM.promotionImg){
+          if(promotion === MUTNAM.promotionImg[i].src){
+            isOnSale = true;
+          }
+        }
+
+        if(isOnSale){
+          itemPrice = $(this).find(MUTNAM.promotionPrice.css).text();
         }else{
-          itemPrice = $(this).find("div.description ul li:nth-child(2)>span").text();
+          itemPrice = $(this).find(MUTNAM.unPromotionPrice.css).text();
         }
         //item object의 필드값을 채워주고
         item.set("price", itemPrice);
