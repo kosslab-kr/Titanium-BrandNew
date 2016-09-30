@@ -20,7 +20,7 @@ var PURPLE = {
   itemUrl : {css : "a"},
   postElements : {css : "li.item.xans-record-"},
   promotion : {css : "div.icon>img"},
-  itemName : {css : "p.name a span"},
+  itemName : {css : "p.name a>span"},
   imgSrc : {css : "a img"},
   promotionImg: {
     first : {src : "/web/upload/benefit/benefit_shop1_821667577203545cf3b0.77032659.gif"},
@@ -100,6 +100,7 @@ function _itemSave(body, itemList, url) {
     var itemPrice;
     //상품명과 상품 이미지
     var itemName = $(this).find(ENUM.itemName.css).text();
+
     var imgSrc = $(this).find(ENUM.imgSrc.css).attr('src');
     var p_link = ENUM.homeUrl.src + $(this).find(ENUM.itemUrl.css).attr('href');  // 해당 상품 주소 55
     //price를 찾아내기 위한 부분인 promotion을 정의한다.
