@@ -83,6 +83,7 @@
                     android:configChanges="keyboardHidden|orientation|screenSize"
                     android:name="ti.modules.titanium.media.TiCameraActivity"
                     android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Translucent.NoTitleBar.Fullscreen"/>
+								<meta-data android:name="com.parse.push.gcm_sender_id" android:value="id:446461095494"/>
             </application>
             <!-- Camera Permissions -->
             <uses-permission android:name="android.permission.CALL_PHONE"/>
