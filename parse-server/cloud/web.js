@@ -270,6 +270,8 @@ function saveCurrentItemList(itemList, result){
   currentItemList.set("ItemList", itemList);
   currentItemList.save(null, {
     success: function(){
+      console.log("save CurrentItemList");
+      console.log(result);
       Parse.Push.send({
         where: query,
         data: {
@@ -277,14 +279,13 @@ function saveCurrentItemList(itemList, result){
         }
       }, {
         success: function() {
-          // Push was successful
+          console.log("push sended");
         },
         error: function(error) {
           // Handle error
         }
       });
-      console.log("save CurrentItemList");
-      console.log(result);
+
     },
     error: function(error){
       alert("Error: " + error.code + " " + error.message);
