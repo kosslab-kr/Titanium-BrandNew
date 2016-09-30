@@ -446,10 +446,12 @@ var APP = {
     APP.SettingsM = Alloy.Models.instance('Settings');
     APP.SettingsM.fetch({
       success: function() {
-        APP.UserM.login();
+        //APP.UserM.login();
+        APP.initAfterLogin();
       },
       error: function() {
-        APP.UserM.login();
+        //APP.UserM.login();
+        APP.initAfterLogin();
       }
     });
   },
@@ -463,7 +465,9 @@ var APP = {
     APP.build();
 
     // Open the main window
-    APP.MainWindow.open();
+    //APP.MainWindow.open();
+    APP.defaultView = Alloy.createController('_default').getView();
+    APP.defaultView.open();
 
     // joinView close
     if (APP.joinView) {

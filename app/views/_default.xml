@@ -1,8 +1,21 @@
 <Alloy>
-	<View id="window" class="container">
-		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" />
-		<View id="mainView" class="mainView">
-
-		</View>
-	</View>
+    <Window class="container">
+<ListView id="elementsList" defaultItemTemplate="elementTemplate">
+    <Templates>
+        <ItemTemplate name="elementTemplate">
+            <ImageView bindId="symbol" id="image" />
+            <View id="atomProperties">
+                <Label bindId="name" id="name" />
+                <View id="secondLine">
+                    <Label class="line2 fieldLabel" text="Number: " />
+                    <Label class="line2" bindId="number" id="number" />
+                    <Label class="line2 fieldLabel" text="Atomic Mass: " />
+                    <Label class="line2" bindId="mass" id="mass" />
+                </View>
+            </View>
+        </ItemTemplate>
+    </Templates>
+    <ListSection id="shop1Section"></ListSection>
+</ListView>  
+    </Window>
 </Alloy>
