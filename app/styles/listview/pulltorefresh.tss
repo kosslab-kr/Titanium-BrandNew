@@ -18,32 +18,33 @@
 
 
 ".atomProperties": {
-	left: 0, right: 0,
+	width: Titanium.UI.FILL, height: 100,
     layout: "horizontal"
 },
 ".image": {
 	left: 0,
-	width:100
+	width:130, height: 150
 },
 ".secondLine": {
-    left: 0, right: 0,
+    left: 0, width: Titanium.UI.FILL, height: 150,
     layout: "vertical"
 },
 
 ".NameLabel": {
-    left: 10, top: 10,
+    left: 20, top: 20, width: Titanium.UI.FILL,
     color: "black",
     textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-    font: { fontSize: 16 }
+    font: { fontSize: 16,
+    fontweight: 'bold' }
 },
 ".priceLabel": {
-    left:10,
+    left:20, width: Titanium.UI.FILL,
     top: 5,
     color:"#999"
 },
 
 ".URLLabel": {
-	left:10,
+	left:20, width: Titanium.UI.FILL,
 	top: 5,
 	witdh: 100
 }

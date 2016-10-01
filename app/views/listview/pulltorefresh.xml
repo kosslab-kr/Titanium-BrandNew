@@ -2,7 +2,7 @@
 	<View id="window" class="container">
 		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" />
 		<View id="mainView" class="mainView">
-			<ListView id="listView" defaultItemTemplate="elementTemplate">
+			<ListView id="listView" defaultItemTemplate="elementTemplate" onItemclick="handleClick">
 				<!-- The Templates tag sets the ListView's templates property -->
 				<Templates>
 					<ItemTemplate name="elementTemplate">
@@ -12,7 +12,6 @@
 			                <View class="secondLine">
 			                    <Label bindId="Name" class="NameLabel" text="NAME: " />
 			                    <Label bindId="price" class="priceLabel" text="PRICE: " />
-			                    <Label bindId="URL" class="URLLabel" text="URL: " />
 			                </View>
 			            </View>
 			        </ItemTemplate>

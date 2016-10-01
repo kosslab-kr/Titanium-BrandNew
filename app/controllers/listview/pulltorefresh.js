@@ -16,7 +16,7 @@ CTX.$observer = null;
 $.init = function() {
 	APP.log("debug", "default.init | " + JSON.stringify(CONFIG));
 	$.NavigationBar.setBackgroundColor(APP.Settings.colors.primary);
-	$.NavigationBar.setTitle('New_ShopList', APP.Settings.navBarStyle.titleStyle);
+	$.NavigationBar.setTitle('신세계             멋남             퍼플', APP.Settings.navBarStyle.titleStyle);
 
 	if(CONFIG.isChild === true) {
 		$.NavigationBar.showBack(function(_event) {
@@ -76,9 +76,12 @@ CTX.createGameSCoreRow = function (GameScoreModel) {
     symbol: { image: _imgsrc},
     price : {text : _price}, 
     Name : {text : _Name},
-    URL : { text : _url}
   };
 };
+
+function handleClick (e) {
+	Ti.Platform.openURL('http://pur-ple.co.kr/product/detail.html?product_no=18902&cate_no=72&display_group=1');
+}
 
 /**
 * scroll end for position save
