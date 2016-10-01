@@ -6,14 +6,13 @@
 				<!-- The Templates tag sets the ListView's templates property -->
 				<Templates>
 					<ItemTemplate name="elementTemplate">
-			            <ImageView bindId="symbol" id="image" />
-			            <View id="atomProperties">
-			                <Label bindId="name" id="name" />
-			                <View id="secondLine">
-			                    <Label class="line2 fieldLabel" text="Number: " />
-			                    <Label class="line2" bindId="number" id="number" />
-			                    <Label class="line2 fieldLabel" text="Atomic Mass: " />
-			                    <Label class="line2" bindId="mass" id="mass" />
+			            
+			            <View class="atomProperties">
+			            	<ImageView bindId="symbol" class="image" />
+			                <View class="secondLine">
+			                    <Label bindId="Name" class="NameLabel" text="NAME: " />
+			                    <Label bindId="price" class="priceLabel" text="PRICE: " />
+			                    <Label bindId="URL" class="URLLabel" text="URL: " />
 			                </View>
 			            </View>
 			        </ItemTemplate>

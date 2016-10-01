@@ -16,7 +16,7 @@ CTX.$observer = null;
 $.init = function() {
 	APP.log("debug", "default.init | " + JSON.stringify(CONFIG));
 	$.NavigationBar.setBackgroundColor(APP.Settings.colors.primary);
-	$.NavigationBar.setTitle('', APP.Settings.navBarStyle.titleStyle);
+	$.NavigationBar.setTitle('New_ShopList', APP.Settings.navBarStyle.titleStyle);
 
 	if(CONFIG.isChild === true) {
 		$.NavigationBar.showBack(function(_event) {
@@ -66,19 +66,19 @@ CTX.createGameSCoreRow = function (GameScoreModel) {
   //var _playerName = GameScoreModel.get('playerName');
   //var _score = GameScoreModel.get('score');
   //var _cheatMode = GameScoreModel.get('cheatMode') ? "TRUE" : "FALSE";
-  var _Name = shoplistModel.get('name');
-  var _price = shoplistModel.get('price');
-  var _imgsrc = shoplistModel.get('imgsrc');
-  var _url = shoplistModel.get('url');
+  var _Name = GameScoreModel.get('name');
+  var _price = GameScoreModel.get('price');
+  var _imgsrc = GameScoreModel.get('imgsrc');
+  var _url = GameScoreModel.get('url');
 	
   return  {
     template : 'elementTemplate',
     symbol: { image: _imgsrc},
-    mass : {text : _price}, 
-    playerName : {text : _Name},
-     number : { text : _url}
+    price : {text : _price}, 
+    Name : {text : _Name},
+    URL : { text : _url}
   };
-}
+};
 
 /**
 * scroll end for position save
