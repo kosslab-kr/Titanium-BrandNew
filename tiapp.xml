@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>nipa.titanium.brandnew</id>
-    <name>TitaniumBoilerPlate</name>
+    <name>brandnew</name>
     <version>1.0</version>
     <publisher>DongwooGim</publisher>
     <url>https://github.com/gimdongwoo</url>
@@ -11,7 +11,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>9ca04b5d-7440-42e8-9111-af0ce83c2e0a</guid>
+    <guid>4cd69520-7822-49da-9000-f9d8c942a2ae</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>
         <min-ios-ver>8.0</min-ios-ver>

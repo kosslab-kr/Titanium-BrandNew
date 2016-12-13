@@ -80,7 +80,7 @@ CTX.createGameSCoreRow = function (GameScoreModel) {
 };
 
 function handleClick (e) {
-	Ti.Platform.openURL('http://pur-ple.co.kr/product/detail.html?product_no=18902&cate_no=72&display_group=1');
+	Ti.Platform.openURL('http://pur-ple.co.kr/product/detail.html?product_no=18936&cate_no=72&display_group=1');
 }
 
 /**
